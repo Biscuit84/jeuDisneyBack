@@ -97,7 +97,7 @@ public class MyGame {
 			}
 
 
-			int positionCase = 0;
+			int positionCase = 0; //mettre case départ
 
 
 
