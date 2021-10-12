@@ -2,6 +2,9 @@ package plateau;
 
 public class CasesPlateau {
 
+	//private int idCasePlateau;
+	//private Plateau plateau;
+	//private Case uneCase;
 	private int idPlateau;
 	private int idCase;
 	private int ordreCase;

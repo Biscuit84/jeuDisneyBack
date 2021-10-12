@@ -13,7 +13,6 @@ public class Partie {
 	
 
 	public Partie(int idPlateau, Personnage personnage, Joueur j, int position) {
-		super();
 		this.idPlateau = idPlateau;
 		this.personnage = personnage;
 		this.j = j;
