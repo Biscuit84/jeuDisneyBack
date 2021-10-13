@@ -1,7 +1,19 @@
 package model;
 
-public abstract class Compte  {
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "Type_Compte")
+public abstract class Compte  {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected int id;
 	protected String login;
 	protected String password;
@@ -11,14 +23,7 @@ public abstract class Compte  {
 	
 	
 	
-	public Compte(int id, String login, String password, String nom, String prenom, String mail) {
-		this.id = id;
-		this.login = login;
-		this.password = password;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.mail = mail;
-	}
+	
 
 	
 		

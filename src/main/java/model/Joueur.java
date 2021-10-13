@@ -2,6 +2,8 @@ package model;
 
 import java.util.List;
 
+import javax.persistence.Entity;
+@Entity
 public class Joueur extends Compte{
 
 	private String pseudo;
@@ -11,15 +13,8 @@ public class Joueur extends Compte{
 	private List<Partie> listePartie;
 
 
-	public Joueur(int id, String login, String password, String nom, String prenom, String mail, String pseudo,
-			String level, int life, List<Historique> listeHistorique, List<Partie> listePartie) {
-		super(id, login, password, nom, prenom, mail);
-		this.pseudo = pseudo;
-		this.level = level;
-		this.life = life;
-		this.listeHistorique=listeHistorique;
-		this.listePartie=listePartie;
-	}
+
+	
 
 	public Joueur(String login, String password, String nom, String prenom, String mail, String pseudo,
 			String level, int life) {
@@ -38,10 +33,7 @@ public class Joueur extends Compte{
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Joueur(int id,String login, String password, String nom, String prenom, String pseudo,String mail) {
-		super(id,login, password, nom, prenom, mail);
-		this.pseudo = pseudo;
-	}
+
 
 	public Joueur(String pseudo) {
 		super();
