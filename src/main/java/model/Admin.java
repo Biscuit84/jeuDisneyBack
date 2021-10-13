@@ -1,5 +1,8 @@
 package model;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Admin extends Compte {
 
 	public Admin() {
@@ -7,10 +10,8 @@ public class Admin extends Compte {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Admin(int id, String login, String password, String nom, String prenom, String mail) {
-		super(id, login, password, nom, prenom, mail);
-		// TODO Auto-generated constructor stub
-	}
+	
+	
 
 	public Admin(String login, String password, String nom, String prenom, String mail) {
 		super(login, password, nom, prenom, mail);
