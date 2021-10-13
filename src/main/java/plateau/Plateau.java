@@ -1,17 +1,31 @@
 package plateau;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-
+@Entity
 public class Plateau   {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	@Column(columnDefinition = "VARCHAR(50)")
 	private String nom;
+	@Column(name="nombre_de_cases")
 	private int nbCases;
 	
 	
-	public Plateau(int id, String nom, int nbCases) {
-		super();
+	public Plateau(int id,String nom, int nbCases) {
+		
 		this.id = id;
+		this.nom = nom;
+		this.nbCases = nbCases;
+	}
+	
+	public Plateau(String nom, int nbCases) {
 		this.nom = nom;
 		this.nbCases = nbCases;
 	}
