@@ -10,6 +10,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import IDAO.IDAO;
 import model.Compte;
 import model.Historique;
 import model.Personnage;
