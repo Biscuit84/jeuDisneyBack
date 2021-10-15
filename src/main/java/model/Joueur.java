@@ -3,13 +3,24 @@ package model;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 @Entity
 public class Joueur extends Compte{
 
 	private String pseudo;
+	
 	private String level="noob";
+	
 	private int life=3;
+	
+	
+	
+	
+	@OneToMany //(mappedBy = "")
 	private List<Historique> listeHistorique;
+	
+	
+	@OneToMany (mappedBy = "j")
 	private List<Partie> listePartie;
 
 
