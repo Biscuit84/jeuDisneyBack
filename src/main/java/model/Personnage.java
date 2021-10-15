@@ -28,9 +28,7 @@ public class Personnage  {
 	private CasesPlateau position;
 //	private int position;
 	
-	public Personnage(int id, String nom, String prince, String mechant, String pouvoir) {
-		
-		this.id = id;
+	public Personnage(String nom, String prince, String mechant, String pouvoir) {
 		this.nom = nom;
 		this.prince = prince;
 		this.mechant = mechant;
