@@ -13,8 +13,8 @@ public class CaseArrivee extends Cases {
 		
 	}
 
-	public CaseArrivee(int id, String nom) {
-		super(id, nom);
+	public CaseArrivee(String nom) {
+		super( nom);
 		
 	}
 

@@ -13,8 +13,8 @@ public class CasePrince extends Cases {
 		// TODO Auto-generated constructor stub
 	}
 
-	public CasePrince(int id, String nom) {
-		super(id, nom);
+	public CasePrince( String nom) {
+		super( nom);
 		// TODO Auto-generated constructor stub
 	}
 

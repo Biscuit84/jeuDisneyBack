@@ -13,8 +13,8 @@ public class CaseDuel extends Cases {
 		
 	}
 
-	public CaseDuel(int id, String nom) {
-		super(id, nom);
+	public CaseDuel( String nom) {
+		super( nom);
 		
 	}
 

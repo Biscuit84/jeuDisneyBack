@@ -12,8 +12,8 @@ public class CasePrison extends Cases {
 		// TODO Auto-generated constructor stub
 	}
 
-	public CasePrison(int id, String nom) {
-		super(id, nom);
+	public CasePrison( String nom) {
+		super( nom);
 		// TODO Auto-generated constructor stub
 	}
 
