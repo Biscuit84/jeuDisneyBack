@@ -15,6 +15,7 @@ import DAO.DAOPlateau;
 import model.Compte;
 import model.Joueur;
 import model.Partie;
+import model.PersoObtenu;
 import model.Personnage;
 import model.Planete;
 import model.Satellite;
@@ -266,28 +267,30 @@ public class MyGame {
 
 
 	//affiche la liste des personnages d'un joueur
-	public static List<Personnage> listePersonnagesJoueur () {
+	public static List<PersoObtenu> listePersonnagesJoueur (int id) {
 		
 		
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
 
-		Query q = em.createQuery("From Personnage p",Personnage.class);
-		List<Personnage> personnage = q.getResultList();
+		Query q = em.createQuery("From PersoObtenu p JOIN Personnage on p.perso_id = Personnage.id where p.joueur_id=:id",PersoObtenu.class);
+		q.setParameter("id",id);
+		List<PersoObtenu> personnage = q.getResultList();
 	
 	
-		em.close();
 		
-		for(Joueur j : ) 
+		System.out.println("Voici les personnages disponibles pour vous: ");
+		for(PersoObtenu po : personnage ) 
 		{
-			System.out.println("--------------------");
-			System.out.println("infos de la planete : "+p.getLibelle());
-			System.out.println("Liste des satellites :");
-			for(Satellite s : p.getSatellites()) 
-			{
-				System.out.println(s.getNom());
-			}
-		listePersonnages=Context.getInstance().getDaoJoueur().);
-		return listePersonnages;
+			System.out.println(po.getPerso().getNom());
+			
+		}	
+		
+	
+		
+		em.close();
+		return personnage;
+		
+		
 	}
 
 

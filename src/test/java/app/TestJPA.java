@@ -5,7 +5,7 @@ import model.Personnage;
 
 import model.Admin;
 import model.Joueur;
-
+import model.PersoObtenu;
 import plateau.CaseArrivee;
 import plateau.CaseDepart;
 import plateau.CaseDeplacement;
@@ -116,8 +116,12 @@ public class TestJPA {
 		//initAdmin();
 		//initJoueur();
 		//initPersonnage();
+//		PersoObtenu po = new PersoObtenu(Context.getInstance().getDaoPersonnage().findById(1),Context.getInstance().getDaoJoueur().findById(1));
+//		PersoObtenu po1 = new PersoObtenu(Context.getInstance().getDaoPersonnage().findById(2),Context.getInstance().getDaoJoueur().findById(1));
+//		Context.getInstance().getDaoPersoObtenu().save(po);
+//		Context.getInstance().getDaoPersoObtenu().save(po1);
 		//Test.connec();
-		Context.getInstance().getEmf();
+		MyGame.listePersonnagesJoueur(1);
 		Context.getInstance().closeEmf();
 		
 		

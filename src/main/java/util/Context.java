@@ -11,6 +11,7 @@ import DAO.DAOCasesPlateau;
 import DAO.DAOCompte;
 import DAO.DAOHistorique;
 import DAO.DAOJoueur;
+import DAO.DAOPersoObtenu;
 import DAO.DAOPersonnage;
 import DAO.DAOPlateau;
 import IDAO.IDAOAdmin;
@@ -21,6 +22,7 @@ import IDAO.IDAOCasesPlateau;
 import IDAO.IDAOCompte;
 import IDAO.IDAOHistorique;
 import IDAO.IDAOJoueur;
+import IDAO.IDAOPersoObtenu;
 import IDAO.IDAOPersonnage;
 import IDAO.IDAOPlateau;
 
@@ -40,7 +42,7 @@ public class Context {
 	private IDAOHistorique daoHistorique = new DAOHistorique();
 	private IDAOPersonnage daoPersonnage = new DAOPersonnage();
 	private IDAOPlateau daoPlateau = new DAOPlateau();
-	
+	private IDAOPersoObtenu daoPersoObtenu = new DAOPersoObtenu();
 	
 	
 	//SINGLETON
@@ -127,6 +129,15 @@ public class Context {
 	public IDAOJoueur getDaoJoueur() {
 		return daoJoueur;
 	}
+
+
+
+	public IDAOPersoObtenu getDaoPersoObtenu() {
+		return daoPersoObtenu;
+	}
+
+
+
 
 	
 	
