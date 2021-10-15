@@ -3,7 +3,7 @@ package plateau;
 import javax.persistence.Entity;
 
 @Entity
-public class CaseVide extends Case {
+public class CaseVide extends Cases {
 
 	
 	

@@ -7,31 +7,31 @@ import javax.persistence.Query;
 
 
 import IDAO.IDAOCases;
-import plateau.Case;
+import plateau.Cases;
 import util.Context;
 
 public class DAOCases implements IDAOCases{
 
 	@Override
-	public Case findById(Integer id) {
+	public Cases findById(Integer id) {
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
-		Case objet = em.find(Case.class, id);
+		Cases objet = em.find(Cases.class, id);
 		em.close();
 		return objet;
 	}
 
 	@Override
-	public List<Case> findAll() {
+	public List<Cases> findAll() {
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
-		Query requete = em.createQuery("from Case a",Case.class);
-		List<Case> Case = requete.getResultList();
+		Query requete = em.createQuery("from Case a",Cases.class);
+		List<Cases> Cases = requete.getResultList();
 		em.close();
-		return Case;
+		return Cases;
 	}
 
 
 	@Override
-	public Case save(Case o) {
+	public Cases save(Cases o) {
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
 		em.getTransaction().begin();
 		o=em.merge(o);
@@ -41,7 +41,7 @@ public class DAOCases implements IDAOCases{
 	}
 
 	@Override
-	public void delete(Case o) {
+	public void delete(Cases o) {
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
 		em.getTransaction().begin();
 		o=em.merge(o);

@@ -1,7 +1,7 @@
 package IDAO;
 
-import plateau.Case;
+import plateau.Cases;
 
-public interface IDAOCases extends IDAO<Case,Integer> {
+public interface IDAOCases extends IDAO<Cases,Integer> {
 
 }

@@ -1,11 +1,16 @@
 package plateau;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import model.Personnage;
 
 @Entity
 public class CasesPlateau {
@@ -16,13 +21,16 @@ public class CasesPlateau {
 	@ManyToOne
 	private Plateau plateau;
 	@OneToOne
-	private Case uneCase;
+	private Cases uneCase;
+	
+	@OneToMany(mappedBy = "position")
+	private List<Personnage> joueurs;
 	
 	private int ordreCase;
 	//private String effet;
 	
 	
-	public CasesPlateau(Plateau plateau, Case uneCase, int ordreCase) {
+	public CasesPlateau(Plateau plateau, Cases uneCase, int ordreCase) {
 		this.plateau = plateau;
 		this.uneCase = uneCase;
 		this.ordreCase = ordreCase;
@@ -44,10 +52,10 @@ public class CasesPlateau {
 	public void setPlateau(Plateau plateau) {
 		this.plateau = plateau;
 	}
-	public Case getUneCase() {
+	public Cases getUneCase() {
 		return uneCase;
 	}
-	public void setUneCase(Case uneCase) {
+	public void setUneCase(Cases uneCase) {
 		this.uneCase = uneCase;
 	}
 	public int getOrdreCase() {

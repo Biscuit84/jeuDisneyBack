@@ -5,7 +5,7 @@ import java.util.Random;
 import javax.persistence.Entity;
 
 @Entity
-public class CaseDeplacement extends Case {
+public class CaseDeplacement extends Cases {
 
 	
 	

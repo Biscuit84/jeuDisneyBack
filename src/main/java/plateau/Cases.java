@@ -1,5 +1,6 @@
 package plateau;
 
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,7 +10,8 @@ import javax.persistence.InheritanceType;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public abstract class Case {
+@DiscriminatorColumn(name="type_case")
+public abstract  class Cases {
 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
@@ -18,16 +20,20 @@ public abstract class Case {
 //	private String effet;
 	
 	
-	public Case(int id, String nom) {
+	public Cases(String nom) {
 		
-		this.id = id;
+	
+		this.nom = nom;
+	}
+	
+	public Cases(int id,String nom) {
+		
+		this.id=id;
 		this.nom = nom;
 	}
 	
 	
-	
-	
-	public Case() {
+	public Cases() {
 		
 	}
 

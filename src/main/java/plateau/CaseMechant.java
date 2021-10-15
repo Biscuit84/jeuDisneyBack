@@ -5,7 +5,7 @@ import java.util.Random;
 import javax.persistence.Entity;
 
 @Entity
-public class CaseMechant extends Case {
+public class CaseMechant extends Cases {
 
 	public CaseMechant() {
 		super();

@@ -3,7 +3,7 @@ package plateau;
 import javax.persistence.Entity;
 
 @Entity
-public class CaseDepart extends Case{
+public class CaseDepart extends Cases{
 
 	
 	
@@ -13,8 +13,8 @@ public class CaseDepart extends Case{
 	
 	}
 
-	public CaseDepart(int id, String nom) {
-		super(id, nom);
+	public CaseDepart( String nom) {
+		super(nom);
 		
 	}
 
