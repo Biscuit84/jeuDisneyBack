@@ -3,20 +3,24 @@ package util;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import DAO.DAOAdmin;
 import DAO.DAOBoutique;
 import DAO.DAOCarte;
 import DAO.DAOCases;
 import DAO.DAOCasesPlateau;
 import DAO.DAOCompte;
 import DAO.DAOHistorique;
+import DAO.DAOJoueur;
 import DAO.DAOPersonnage;
 import DAO.DAOPlateau;
+import IDAO.IDAOAdmin;
 import IDAO.IDAOBoutique;
 import IDAO.IDAOCarte;
 import IDAO.IDAOCases;
 import IDAO.IDAOCasesPlateau;
 import IDAO.IDAOCompte;
 import IDAO.IDAOHistorique;
+import IDAO.IDAOJoueur;
 import IDAO.IDAOPersonnage;
 import IDAO.IDAOPlateau;
 
@@ -31,6 +35,8 @@ public class Context {
 	private IDAOCases daoCases = new DAOCases();
 	private IDAOCasesPlateau daoCasesPlateau = new DAOCasesPlateau();
 	private IDAOCompte daoCompte = new DAOCompte();
+	private IDAOAdmin daoAdmin = new DAOAdmin();
+	private IDAOJoueur daoJoueur = new DAOJoueur();
 	private IDAOHistorique daoHistorique = new DAOHistorique();
 	private IDAOPersonnage daoPersonnage = new DAOPersonnage();
 	private IDAOPlateau daoPlateau = new DAOPlateau();
@@ -114,9 +120,14 @@ public class Context {
 		return daoPlateau;
 	}
 
+	public IDAOAdmin getDaoAdmin() {
+		return daoAdmin;
+	}
 
+	public IDAOJoueur getDaoJoueur() {
+		return daoJoueur;
+	}
 
-	
 	
 	
 	
