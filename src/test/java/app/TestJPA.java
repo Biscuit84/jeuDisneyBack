@@ -10,6 +10,7 @@ import plateau.CasePrince;
 import plateau.CasePrison;
 import plateau.CaseVide;
 import plateau.Cases;
+import plateau.Plateau;
 import util.Context;
 
 public class TestJPA {
@@ -40,9 +41,17 @@ public class TestJPA {
 
 
 	}
+	
+	public static void initPlateau() {
+		
+		Plateau testPlateau = new Plateau("Test", 9);
+		Context.getInstance().getDaoPlateau().save(testPlateau);
+		Context.getInstance().closeEmf();
+	}
+	
 	public static void main(String[] args) {
 
-		initCase();
+		initPlateau();
 
 	}
 }
