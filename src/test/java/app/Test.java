@@ -7,6 +7,7 @@ import DAO.DAOCompte;
 import model.Admin;
 import model.Compte;
 import model.Joueur;
+import util.Context;
 
 public class Test {
 
@@ -119,7 +120,7 @@ public class Test {
 				
 		String login = saisieString("Saisir votre login");
 		String password = saisieString("Saisir votre password");
-		connected=daoCompte.connectSecure(login, password);
+		connected=Context.getInstance().getDaoCompte().connect(login, password);
 		if(connected instanceof Admin) 
 		{ 
 			menuAdmin();

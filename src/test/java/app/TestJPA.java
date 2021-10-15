@@ -1,5 +1,6 @@
 package app;
 
+import model.Personnage;
 import plateau.CaseArrivee;
 import plateau.CaseDepart;
 import plateau.CaseDeplacement;
@@ -42,18 +43,18 @@ public class TestJPA {
 
 
 	}
-	
-	
-	
+
+
+
 	public static void initPlateau() {
-		
+
 		Plateau testPlateau = new Plateau("Test", 9);
 		Context.getInstance().getDaoPlateau().save(testPlateau);
 		Context.getInstance().closeEmf();
 	}
-	
-	
-	
+
+
+
 	public static void initCasesPlateau() {
 		Plateau plateau= Context.getInstance().getDaoPlateau().findById(1);
 		CasesPlateau cp = new CasesPlateau(plateau, Context.getInstance().getDaoCases().findById(1), 0);
@@ -65,7 +66,7 @@ public class TestJPA {
 		CasesPlateau cp6 = new CasesPlateau(plateau, Context.getInstance().getDaoCases().findById(7), 6);
 		CasesPlateau cp7 = new CasesPlateau(plateau, Context.getInstance().getDaoCases().findById(8), 7);
 		CasesPlateau cp8 = new CasesPlateau(plateau, Context.getInstance().getDaoCases().findById(9), 8);
-		
+
 		Context.getInstance().getDaoCasesPlateau().save(cp);
 		Context.getInstance().getDaoCasesPlateau().save(cp1);
 		Context.getInstance().getDaoCasesPlateau().save(cp2);
@@ -77,16 +78,26 @@ public class TestJPA {
 		Context.getInstance().getDaoCasesPlateau().save(cp8);
 		Context.getInstance().closeEmf();
 	}
-	
-	
-	
-	
-	
-	
-	
+
+	public static void initPersonnage () {
+
+
+		Personnage p1 = new Personnage ("Elsa","Olaf","Prince hans des iles du sud","Gèle:tous le monde ne joue pas pendat un tour");
+		Personnage p2 = new Personnage ("Ariel","Prince Eric","Ursula","Noie:tous le monde ne joue pas pendat un tour");
+		Personnage p3 = new Personnage ("Cendrillon","Prince Thomas","Belle-mère","Perd sa chaussure :tous le monde ne joue pas pendat un tour");
+		Context.getInstance().getDaoPersonnage().save(p1);
+		Context.getInstance().getDaoPersonnage().save(p2);
+		Context.getInstance().getDaoPersonnage().save(p3);
+		Context.getInstance().closeEmf();
+	}
+
+
+
+
+
 	public static void main(String[] args) {
 
-		initCasesPlateau();
+		initPersonnage();
 
 	}
 }
