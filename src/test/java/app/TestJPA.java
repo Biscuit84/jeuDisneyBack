@@ -10,6 +10,7 @@ import plateau.CasePrince;
 import plateau.CasePrison;
 import plateau.CaseVide;
 import plateau.Cases;
+import plateau.CasesPlateau;
 import plateau.Plateau;
 import util.Context;
 
@@ -42,6 +43,8 @@ public class TestJPA {
 
 	}
 	
+	
+	
 	public static void initPlateau() {
 		
 		Plateau testPlateau = new Plateau("Test", 9);
@@ -49,9 +52,41 @@ public class TestJPA {
 		Context.getInstance().closeEmf();
 	}
 	
+	
+	
+	public static void initCasesPlateau() {
+		Plateau plateau= Context.getInstance().getDaoPlateau().findById(1);
+		CasesPlateau cp = new CasesPlateau(plateau, Context.getInstance().getDaoCases().findById(1), 0);
+		CasesPlateau cp1 = new CasesPlateau(plateau, Context.getInstance().getDaoCases().findById(2), 1);
+		CasesPlateau cp2 = new CasesPlateau(plateau, Context.getInstance().getDaoCases().findById(3), 2);
+		CasesPlateau cp3 = new CasesPlateau(plateau, Context.getInstance().getDaoCases().findById(4), 3);
+		CasesPlateau cp4 = new CasesPlateau(plateau, Context.getInstance().getDaoCases().findById(5), 4);
+		CasesPlateau cp5 = new CasesPlateau(plateau, Context.getInstance().getDaoCases().findById(6), 5);
+		CasesPlateau cp6 = new CasesPlateau(plateau, Context.getInstance().getDaoCases().findById(7), 6);
+		CasesPlateau cp7 = new CasesPlateau(plateau, Context.getInstance().getDaoCases().findById(8), 7);
+		CasesPlateau cp8 = new CasesPlateau(plateau, Context.getInstance().getDaoCases().findById(9), 8);
+		
+		Context.getInstance().getDaoCasesPlateau().save(cp);
+		Context.getInstance().getDaoCasesPlateau().save(cp1);
+		Context.getInstance().getDaoCasesPlateau().save(cp2);
+		Context.getInstance().getDaoCasesPlateau().save(cp3);
+		Context.getInstance().getDaoCasesPlateau().save(cp4);
+		Context.getInstance().getDaoCasesPlateau().save(cp5);
+		Context.getInstance().getDaoCasesPlateau().save(cp6);
+		Context.getInstance().getDaoCasesPlateau().save(cp7);
+		Context.getInstance().getDaoCasesPlateau().save(cp8);
+		Context.getInstance().closeEmf();
+	}
+	
+	
+	
+	
+	
+	
+	
 	public static void main(String[] args) {
 
-		initPlateau();
+		initCasesPlateau();
 
 	}
 }
