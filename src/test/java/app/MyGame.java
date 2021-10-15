@@ -17,8 +17,7 @@ import model.Joueur;
 import model.Partie;
 import model.PersoObtenu;
 import model.Personnage;
-import model.Planete;
-import model.Satellite;
+
 import plateau.CasesPlateau;
 import plateau.Plateau;
 import util.Context;
