@@ -1,36 +1,49 @@
 package plateau;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class CasesPlateau {
 
-	//private int idCasePlateau;
-	//private Plateau plateau;
-	//private Case uneCase;
-	private int idPlateau;
-	private int idCase;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int idCasePlateau;
+	private Plateau plateau;
+	private Case uneCase;
 	private int ordreCase;
 	//private String effet;
 	
 	
-	public CasesPlateau(int idPlateau, int idCase, int ordreCase) {
-		super();
-		this.idPlateau = idPlateau;
-		this.idCase = idCase;
+	public CasesPlateau(Plateau plateau, Case uneCase, int ordreCase) {
+		this.plateau = plateau;
+		this.uneCase = uneCase;
 		this.ordreCase = ordreCase;
 	}
 	public CasesPlateau() {
 		super();
 	}
-	public int getIdPlateau() {
-		return idPlateau;
+
+	
+	public int getIdCasePlateau() {
+		return idCasePlateau;
 	}
-	public void setIdPlateau(int idPlateau) {
-		this.idPlateau = idPlateau;
+	public void setIdCasePlateau(int idCasePlateau) {
+		this.idCasePlateau = idCasePlateau;
 	}
-	public int getIdCase() {
-		return idCase;
+	public Plateau getPlateau() {
+		return plateau;
 	}
-	public void setIdCase(int idCase) {
-		this.idCase = idCase;
+	public void setPlateau(Plateau plateau) {
+		this.plateau = plateau;
+	}
+	public Case getUneCase() {
+		return uneCase;
+	}
+	public void setUneCase(Case uneCase) {
+		this.uneCase = uneCase;
 	}
 	public int getOrdreCase() {
 		return ordreCase;
@@ -41,8 +54,11 @@ public class CasesPlateau {
 	
 	@Override
 	public String toString() {
-		return "CasesPlateau [idPlateau=" + idPlateau + ", idCase=" + idCase + ", ordreCase=" + ordreCase + "]";
+		return "CasesPlateau [idCasePlateau=" + idCasePlateau + ", plateau=" + plateau + ", uneCase=" + uneCase
+				+ ", ordreCase=" + ordreCase + "]";
 	}
+
+	
 	
 	
 	

@@ -1,5 +1,8 @@
 package plateau;
 
+import javax.persistence.Entity;
+
+@Entity
 public class CaseVide extends Case {
 
 	
