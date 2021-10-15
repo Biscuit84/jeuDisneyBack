@@ -8,6 +8,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+import plateau.Plateau;
 
 
 
@@ -19,28 +23,27 @@ public class Partie {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	private int idPlateau;
+	@OneToOne
+	private Plateau plateau;
 	
 	
-	@ManyToOne
-	private Personnage personnage;
+	@OneToMany
+	private List<Personnage> personnages;
 	
 	
 	
-	@ManyToOne
-	private Joueur j;
+	@OneToMany
+	private List<Joueur> joueursPartie;
 	
-	private int position;
 	
 	
 
 
-	public Partie(int id, int idPlateau, Personnage personnage, Joueur j, int position) {
-		this.id = id;
-		this.idPlateau = idPlateau;
-		this.personnage = personnage;
-		this.j = j;
-		this.position = position;
+	public Partie(Plateau plateau, Personnage personnage) {
+		super();
+		this.plateau = plateau;
+		
+		
 	}
 
 
@@ -49,47 +52,75 @@ public class Partie {
 	public Partie() {
 		
 	}
-	
-	
-	
-	
-	public Personnage getPersonnage() {
-		return personnage;
+
+
+
+
+	public int getId() {
+		return id;
 	}
 
-	public void setPersonnage(Personnage personnage) {
-		this.personnage = personnage;
+
+
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	public int getPosition() {
-		return position;
+
+
+
+	public Plateau getPlateau() {
+		return plateau;
 	}
 
-	public void setPosition(int position) {
-		this.position = position;
+
+
+
+	public void setPlateau(Plateau plateau) {
+		this.plateau = plateau;
 	}
 
-	public int getIdPlateau() {
-		return idPlateau;
+
+
+	public List<Personnage> getPersonnages() {
+		return personnages;
 	}
 
-	public void setIdPlateau(int idPlateau) {
-		this.idPlateau = idPlateau;
+
+
+
+	public void setPersonnages(List<Personnage> personnages) {
+		this.personnages = personnages;
 	}
 
-	public Joueur getJ() {
-		return j;
+
+
+
+	public List<Joueur> getJoueursPartie() {
+		return joueursPartie;
 	}
 
-	public void setJ(Joueur j) {
-		this.j = j;
+
+
+
+	public void setJoueursPartie(List<Joueur> joueursPartie) {
+		this.joueursPartie = joueursPartie;
 	}
+
+
+
 
 	@Override
 	public String toString() {
-		return "Partie [idPlateau=" + idPlateau + ", personnage=" + personnage + ", j=" + j + ", position=" + position
-				+ "]";
+		return "Partie [id=" + id + ", plateau=" + plateau +  "]";
 	}
+
+
+
+
+	
+	
 	
 	
 	

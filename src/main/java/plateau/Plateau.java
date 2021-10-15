@@ -18,12 +18,6 @@ public class Plateau   {
 	private int nbCases;
 	
 	
-	public Plateau(int id,String nom, int nbCases) {
-		
-		this.id = id;
-		this.nom = nom;
-		this.nbCases = nbCases;
-	}
 	
 	public Plateau(String nom, int nbCases) {
 		this.nom = nom;
@@ -32,7 +26,7 @@ public class Plateau   {
 
 
 	public Plateau() {
-		super();
+		
 	}
 
 

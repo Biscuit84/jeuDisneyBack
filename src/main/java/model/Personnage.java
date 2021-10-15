@@ -25,7 +25,7 @@ public class Personnage  {
 //	private int position;
 	
 	public Personnage(int id, String nom, String prince, String mechant, String pouvoir) {
-		super();
+		
 		this.id = id;
 		this.nom = nom;
 		this.prince = prince;
@@ -35,7 +35,7 @@ public class Personnage  {
 	
 	
 	public Personnage() {
-		super();
+		
 	}
 
 
