@@ -7,6 +7,7 @@ import javax.persistence.Query;
 
 import IDAO.IDAOCompte;
 import model.Compte;
+
 import util.Context;
 
 public class DAOCompte implements IDAOCompte{
@@ -47,6 +48,23 @@ public class DAOCompte implements IDAOCompte{
 		em.remove(o);
 		em.getTransaction().commit();
 		em.close();
+	}
+
+	@Override
+	public Compte connect(String login, String password) {
+		EntityManager em = Context.getInstance().getEmf().createEntityManager();
+
+		Query requeteConnect = em.createQuery("Select p from Personne p where p.login=:login and p.password=:password",Compte.class);
+		requeteConnect.setParameter("login", login);
+		requeteConnect.setParameter("password", password);
+		Compte connected=null;
+
+		try {
+			connected =  (Compte) requeteConnect.getSingleResult();
+		}
+		catch(Exception e) {}
+
+		return connected;
 	}
 
 }
