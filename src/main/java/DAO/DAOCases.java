@@ -5,32 +5,33 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-import IDAO.IDAOHistorique;
-import model.Historique;
+
+import IDAO.IDAOCases;
+import plateau.Case;
 import util.Context;
 
-public class DAOHistorique implements IDAOHistorique{
+public class DAOCases implements IDAOCases{
 
 	@Override
-	public Historique findById(Integer id) {
+	public Case findById(Integer id) {
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
-		Historique objet = em.find(Historique.class, id);
+		Case objet = em.find(Case.class, id);
 		em.close();
 		return objet;
 	}
 
 	@Override
-	public List<Historique> findAll() {
+	public List<Case> findAll() {
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
-		Query requete = em.createQuery("from Historique a",Historique.class);
-		List<Historique> Historiques = requete.getResultList();
+		Query requete = em.createQuery("from Case a",Case.class);
+		List<Case> Case = requete.getResultList();
 		em.close();
-		return Historiques;
+		return Case;
 	}
 
 
 	@Override
-	public Historique save(Historique o) {
+	public Case save(Case o) {
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
 		em.getTransaction().begin();
 		o=em.merge(o);
@@ -40,7 +41,7 @@ public class DAOHistorique implements IDAOHistorique{
 	}
 
 	@Override
-	public void delete(Historique o) {
+	public void delete(Case o) {
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
 		em.getTransaction().begin();
 		o=em.merge(o);
