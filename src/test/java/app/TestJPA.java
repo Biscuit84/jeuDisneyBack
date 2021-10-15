@@ -83,7 +83,7 @@ public class TestJPA {
 		Context.getInstance().getDaoCasesPlateau().save(cp8);
 		Context.getInstance().closeEmf();
 	}
-<<<<<<< HEAD
+
 
 	public static void initPersonnage () {
 
@@ -101,10 +101,10 @@ public class TestJPA {
 
 
 
-	public static void main(String[] args) {
 
-		initPersonnage();
-=======
+
+		
+
 	
 	
 	
@@ -130,12 +130,12 @@ public class TestJPA {
 		//initCasesPlateau();
 		//initAdmin();
 		initJoueur();
+		initPersonnage();
 		
 		
 		
 		
-		
->>>>>>> AjoutInit
+
 
 	}
 }
