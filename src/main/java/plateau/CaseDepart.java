@@ -1,23 +1,26 @@
 package plateau;
 
-public class CaseDepart extends Case{
+import javax.persistence.Entity;
+
+@Entity
+public class CaseDepart extends Cases{
 
 	
 	
 	
 	public CaseDepart() {
 		super();
-		// TODO Auto-generated constructor stub
+	
 	}
 
-	public CaseDepart(int id, String nom) {
-		super(id, nom);
-		// TODO Auto-generated constructor stub
+	public CaseDepart( String nom) {
+		super(nom);
+		
 	}
 
 	@Override
 	public void effetCase() {
-		// TODO Auto-generated method stub
+		
 		
 	}
 

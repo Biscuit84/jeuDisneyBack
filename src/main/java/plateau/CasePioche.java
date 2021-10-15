@@ -1,17 +1,43 @@
 package plateau;
 
-public class CasePioche extends Case {
+import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+
+import model.Carte;
+
+@Entity
+public class CasePioche extends Cases {
+
+	@OneToMany
+	private List<Carte> cartes;
 	
 	
-	public CasePioche() {
-		super();
-		// TODO Auto-generated constructor stub
+	
+	public CasePioche(String nom, List<Carte> cartes) {
+		super(nom);
+		this.cartes = cartes;
 	}
 
-	public CasePioche(int id, String nom) {
-		super(id, nom);
-		// TODO Auto-generated constructor stub
+	public CasePioche() {
+		super();
+		
+	}
+
+	public CasePioche(String nom) {
+		super( nom);
+		
+	}
+
+	
+	
+	public List<Carte> getCartes() {
+		return cartes;
+	}
+
+	public void setCartes(List<Carte> cartes) {
+		this.cartes = cartes;
 	}
 
 	@Override

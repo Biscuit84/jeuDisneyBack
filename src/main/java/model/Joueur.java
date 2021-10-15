@@ -3,18 +3,30 @@ package model;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 @Entity
 public class Joueur extends Compte{
 
 	private String pseudo;
+
 	private String level="noob";
+
 	private int life=3;
-	private List<Historique> listeHistorique;
-	private List<Partie> listePartie;
 
 
 
-	
+	@OneToOne
+	private Historique historique;
+
+
+	//	@OneToMany (mappedBy = "j")
+	//	private List<Partie> listePartie;
+
+	@OneToMany(mappedBy = "joueur")
+	List<PersoObtenu> persos;
+
+
 
 	public Joueur(String login, String password, String nom, String prenom, String mail, String pseudo,
 			String level, int life) {
@@ -27,20 +39,32 @@ public class Joueur extends Compte{
 
 
 
-	public Joueur(String login, String password, String nom, String prenom, String pseudo,String mail) {
-		super(login, password, nom, prenom, mail);
-		this.pseudo = pseudo;
-		// TODO Auto-generated constructor stub
+
+	public List<PersoObtenu> getPersos() {
+		return persos;
 	}
-	
+
+
+
+
+
+	public void setPersos(List<PersoObtenu> persos) {
+		this.persos = persos;
+	}
+
+
+
 
 
 	public Joueur(String pseudo) {
 		super();
 		this.pseudo = pseudo;
-
 	}
-	
+
+
+
+
+
 	public Joueur() {
 		super();
 
@@ -69,34 +93,26 @@ public class Joueur extends Compte{
 	public void setLife(int life) {
 		this.life = life;
 	}
-	
-	
-	
 
-	public List<Historique> getListeHistorique() {
-		return listeHistorique;
+
+	public Historique getHistorique() {
+		return historique;
 	}
 
-	public void setListeHistorique(List<Historique> listeHistorique) {
-		this.listeHistorique = listeHistorique;
+	public void setHistorique(Historique historique) {
+		this.historique = historique;
 	}
-
 	
-	
-	
-	public List<Partie> getListePartie() {
-		return listePartie;
-	}
-
-	public void setListePartie(List<Partie> listePartie) {
-		this.listePartie = listePartie;
-	}
-
 	@Override
 	public String toString() {
-		return "Joueur [pseudo=" + pseudo + ", level=" + level + ", life=" + life + ", id=" + id + ", login=" + login
-				+ ", password=" + password + ", nom=" + nom + ", prenom=" + prenom + ", mail=" + mail + "]";
+		return "Joueur [id=" + id + ", login=" + login + ", password=" + password + ", nom=" + nom + ", prenom="
+				+ prenom + ", mail=" + mail + ", pseudo=" + pseudo + ", level=" + level + ", life=" + life
+				+ ", historique=" + historique + "]";
 	}
+
+
+
+
 
 
 

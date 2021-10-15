@@ -5,22 +5,27 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
 import DAO.DAOCasesPlateau;
 import DAO.DAOCompte;
 import DAO.DAOPersonnage;
 import DAO.DAOPlateau;
+import model.Compte;
 import model.Joueur;
 import model.Partie;
+import model.PersoObtenu;
 import model.Personnage;
+
 import plateau.CasesPlateau;
 import plateau.Plateau;
+import util.Context;
 
 public class MyGame {
 
 
-	static DAOPersonnage daoPersonnage = new DAOPersonnage();
-	static DAOPlateau daoPlateau= new DAOPlateau();
-	static DAOCasesPlateau daoCasesPlateau= new DAOCasesPlateau();
+
 	static Random r = new Random();
 
 	public static String saisieString(String msg) 
@@ -62,7 +67,7 @@ public class MyGame {
 		Joueur IA2 = new Joueur ("Paul");
 		Joueur IA3 = new Joueur ("Jacques");
 
-		listeDesJoueurs.add((Joueur)Test.connected);
+		listeDesJoueurs.add((Joueur)Test.connected); //connected du bon endroit
 		listeDesJoueurs.add(IA1);
 		listeDesJoueurs.add(IA2);
 		listeDesJoueurs.add(IA3);
@@ -76,22 +81,24 @@ public class MyGame {
 
 		try {
 			System.out.println("Voici la liste des plateaux");
-			System.out.println(daoPlateau.findAll());
+			System.out.println(Context.getInstance().getDaoPlateau().findAll());
 			int idPlateau = saisieInt("Choisissez un plateau:");
-			Plateau plateaudelaPartie = daoPlateau.findById(idPlateau);
-			System.out.println("Vous avez choisi le plateau " +plateaudelaPartie);
+			Plateau plateaudelaPartie =Context.getInstance().getDaoPlateau().findById(idPlateau);
+			System.out.println("Vous avez choisi le plateau " +plateaudelaPartie.getNom());
 
 
 
 
 
 			//liste de personnages dispo d'un joueur
-			List <Personnage> listePersonnagesJoueur= listePersonnagesJoueur();
+			List <Personnage> listePersonnagesJoueur= listePersonnagesJoueur(); // afficher liste perso par la fonction dans le DAO
 
 			//la liste des perso de chaque joueur après le choix
 			List <Partie> listePersonnagesDeLaPartie= new ArrayList();
 
 			System.out.println("Voici la liste des personnages disponibles");
+			
+			
 			for (Personnage p: listePersonnagesJoueur) {
 				System.out.println(p);
 			}
@@ -102,10 +109,10 @@ public class MyGame {
 
 
 			int idPersonnage = saisieInt("Quel personnage voulez vous choisir?");
-			Personnage choixPerso=daoPersonnage.findById(idPersonnage);
+			Personnage choixPerso=daoPersonnage.findById(idPersonnage);           //find by Id personnage (Context)
 			System.out.println("Vous avez choisi: "+choixPerso);
 
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 			//Ajouter le perso et sa position à la liste des parties du joueur
 			Partie partieJoueur= new Partie(idPlateau,choixPerso,(Joueur)Test.connected,positionCase);
@@ -259,11 +266,7 @@ public class MyGame {
 
 
 	//affiche la liste des personnages d'un joueur
-	public static List<Personnage> listePersonnagesJoueur () {
-		List <Personnage> listePersonnages= new ArrayList();
-		listePersonnages=daoPersonnage.findByJoueurId(Test.connected.getId());
-		return listePersonnages;
-	}
+	
 
 
 

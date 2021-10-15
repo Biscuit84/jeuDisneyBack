@@ -5,33 +5,56 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+
+@Entity
 public class Historique  {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	
 	private LocalDateTime dateHeurePartie;
+	
 	private LocalTime tempsPartie;
+	
 	private int positionArrivee;
+	
 	private int nbEtoilesGagnees;
-	private Partie partie;
+	
+	
+	
+	@OneToMany
+	private List <Partie> parties;
 	
 	
 	
 	
 
-	public Historique(LocalDateTime dateHeurePartie, LocalTime tempsPartie, int positionArrivee, int nbEtoilesGagnees,
-			Partie partie) {
-		super();
+	
+	
+	
+	
+	public Historique(LocalDateTime dateHeurePartie, LocalTime tempsPartie, int positionArrivee, int nbEtoilesGagnees) {
+		
 		this.dateHeurePartie = dateHeurePartie;
 		this.tempsPartie = tempsPartie;
 		this.positionArrivee = positionArrivee;
 		this.nbEtoilesGagnees = nbEtoilesGagnees;
-		this.partie = partie;
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 	public Historique() {
-		super();
+		
 	}
 
 
@@ -67,26 +90,37 @@ public class Historique  {
 
 
 
-	public Partie getPartie() {
-		return partie;
-	}
-
-
-
-
-
-	public void setPartie(Partie partie) {
-		this.partie = partie;
-	}
-
-
-
+	
 
 
 	@Override
 	public String toString() {
 		return "Historique [dateHeurePartie=" + dateHeurePartie + ", tempsPartie=" + tempsPartie + ", positionArrivee="
-				+ positionArrivee + ", nbEtoilesGagnees=" + nbEtoilesGagnees + ", partie=" + partie + "]";
+				+ positionArrivee + ", nbEtoilesGagnees=" + nbEtoilesGagnees +  "]";
+	}
+
+
+
+
+
+	public List<Partie> getParties() {
+		return parties;
+	}
+
+
+
+
+
+	public void setParties(List<Partie> parties) {
+		this.parties = parties;
+	}
+
+
+
+
+
+	public int getId() {
+		return id;
 	}
 	
 	

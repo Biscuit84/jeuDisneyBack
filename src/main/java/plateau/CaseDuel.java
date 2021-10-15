@@ -1,23 +1,26 @@
 package plateau;
 
-public class CaseDuel extends Case {
+import javax.persistence.Entity;
+
+@Entity
+public class CaseDuel extends Cases {
 
 	
 	
 	
 	public CaseDuel() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 
-	public CaseDuel(int id, String nom) {
-		super(id, nom);
-		// TODO Auto-generated constructor stub
+	public CaseDuel( String nom) {
+		super( nom);
+		
 	}
 
 	@Override
 	public void effetCase() {
-		// TODO Auto-generated method stub
+		
 		
 	}
 

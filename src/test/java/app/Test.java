@@ -3,14 +3,14 @@ package app;
 import java.util.Random;
 import java.util.Scanner;
 
-import DAO.DAOCompte;
 import model.Admin;
 import model.Compte;
 import model.Joueur;
+import util.Context;
 
 public class Test {
 
-	static DAOCompte daoCompte = new DAOCompte();
+	
 	static Compte connected=null;
 	static Random r = new Random();
 
@@ -88,28 +88,28 @@ public class Test {
 	
 	
 	public static void creerNewCompteJoueur() {
-		
-		String nom = saisieString("Saisir votre nom");
-		String prenom = saisieString("Saisir votre prenom");
-		String login = saisieString("Saisir votre login");
-		String password = saisieString("Saisir votre password");
-		String mail = saisieString("Saisir votre mail");
-		String type = saisieString("Voulez vous créer un compte joueur ou admin? (admin/joueur)");
-		switch (type) {
-		case "admin" : System.out.println("veuillez nous contacter pour créer un compte admin"); break;
-		case "joueur": 
-			System.out.println("on est bientôt arrivé au bout");
-			String pseudo = saisieString("Saisir un pseudo");
-			Joueur j = new Joueur (login,password,nom,prenom,pseudo,mail);
-			daoCompte.insert(j); 
-			System.out.println("Bravo! vous venez de créer votre compte"); 
-			System.out.println(j); 
-			break;
-		default: System.out.println("saisie incorrecte"); break;
-		}
-		
-		menuConnexion();
-		
+//		
+//		String nom = saisieString("Saisir votre nom");
+//		String prenom = saisieString("Saisir votre prenom");
+//		String login = saisieString("Saisir votre login");
+//		String password = saisieString("Saisir votre password");
+//		String mail = saisieString("Saisir votre mail");
+//		String type = saisieString("Voulez vous créer un compte joueur ou admin? (admin/joueur)");
+//		switch (type) {
+//		case "admin" : System.out.println("veuillez nous contacter pour créer un compte admin"); break;
+//		case "joueur": 
+//			System.out.println("on est bientôt arrivé au bout");
+//			String pseudo = saisieString("Saisir un pseudo");
+//			Joueur j = new Joueur (login,password,nom,prenom,pseudo,mail);
+//			daoCompte.insert(j); 
+//			System.out.println("Bravo! vous venez de créer votre compte"); 
+//			System.out.println(j); 
+//			break;
+//		default: System.out.println("saisie incorrecte"); break;
+//		}
+//		
+//		menuConnexion();
+//		
 		
 	}
 
@@ -119,7 +119,8 @@ public class Test {
 				
 		String login = saisieString("Saisir votre login");
 		String password = saisieString("Saisir votre password");
-		connected=daoCompte.connectSecure(login, password);
+		connected=Context.getInstance().getDaoCompte().connect(login, password);
+		Context.getInstance().setConnected(connected);
 		if(connected instanceof Admin) 
 		{ 
 			menuAdmin();
@@ -243,20 +244,20 @@ public class Test {
 	}
 
 	private static void creerNewCompteAdmin() {
-		String nom = saisieString("Saisir le nom du nouvel admin");
-		String prenom = saisieString("Saisir le prenom du nouvel admin");
-		String login = saisieString("Saisir le login du nouvel admin");
-		String password = saisieString("Saisir le password du nouvel admin");
-		String mail = saisieString("Saisir le mail du nouvel admin");
-		
-		System.out.println("on est bientôt arrivé au bout");
-		Admin a = new Admin (login,password,nom,prenom,mail);
-		daoCompte.insert(a); 
-		System.out.println("Bravo! vous venez de créer le compte admin de "+a.getPrenom() + " "+ a.getNom()); 
-		System.out.println(a); 
-		
-		
-		menuConnexion();
+//		String nom = saisieString("Saisir le nom du nouvel admin");
+//		String prenom = saisieString("Saisir le prenom du nouvel admin");
+//		String login = saisieString("Saisir le login du nouvel admin");
+//		String password = saisieString("Saisir le password du nouvel admin");
+//		String mail = saisieString("Saisir le mail du nouvel admin");
+//		
+//		System.out.println("on est bientôt arrivé au bout");
+//		Admin a = new Admin (login,password,nom,prenom,mail);
+//		daoCompte.insert(a); 
+//		System.out.println("Bravo! vous venez de créer le compte admin de "+a.getPrenom() + " "+ a.getNom()); 
+//		System.out.println(a); 
+//		
+//		
+//		menuConnexion();
 		
 	}
 

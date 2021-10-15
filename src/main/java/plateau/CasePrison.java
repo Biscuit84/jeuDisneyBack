@@ -1,6 +1,9 @@
 package plateau;
 
-public class CasePrison extends Case {
+import javax.persistence.Entity;
+
+@Entity
+public class CasePrison extends Cases {
 
 	
 	
@@ -9,8 +12,8 @@ public class CasePrison extends Case {
 		// TODO Auto-generated constructor stub
 	}
 
-	public CasePrison(int id, String nom) {
-		super(id, nom);
+	public CasePrison( String nom) {
+		super( nom);
 		// TODO Auto-generated constructor stub
 	}
 

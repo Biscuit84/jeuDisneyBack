@@ -1,6 +1,9 @@
 package plateau;
 
-public class CaseVide extends Case {
+import javax.persistence.Entity;
+
+@Entity
+public class CaseVide extends Cases {
 
 	
 	
@@ -10,8 +13,8 @@ public class CaseVide extends Case {
 		// TODO Auto-generated constructor stub
 	}
 
-	public CaseVide(int id, String nom) {
-		super(id, nom);
+	public CaseVide(String nom) {
+		super( nom);
 		// TODO Auto-generated constructor stub
 	}
 
