@@ -49,16 +49,12 @@ public class TestJPA {
 
 	}
 
-
-
 	public static void initPlateau() {
 
 		Plateau testPlateau = new Plateau("Test", 9);
 		Context.getInstance().getDaoPlateau().save(testPlateau);
 		Context.getInstance().closeEmf();
 	}
-
-
 
 	public static void initCasesPlateau() {
 		Plateau plateau= Context.getInstance().getDaoPlateau().findById(1);
@@ -96,17 +92,6 @@ public class TestJPA {
 		Context.getInstance().getDaoPersonnage().save(p3);
 		Context.getInstance().closeEmf();
 	}
-
-
-
-
-
-
-
-		
-
-	
-	
 	
 	public static void initJoueur() {
 
@@ -129,9 +114,9 @@ public class TestJPA {
 		//initPlateau();
 		//initCasesPlateau();
 		//initAdmin();
-		initJoueur();
-		initPersonnage();
-		
+		//initJoueur();
+		//initPersonnage();
+		//Test.connec();
 		
 		
 		

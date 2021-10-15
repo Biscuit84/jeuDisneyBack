@@ -3,7 +3,6 @@ package app;
 import java.util.Random;
 import java.util.Scanner;
 
-import DAO.DAOCompte;
 import model.Admin;
 import model.Compte;
 import model.Joueur;
@@ -11,7 +10,7 @@ import util.Context;
 
 public class Test {
 
-	static DAOCompte daoCompte = new DAOCompte();
+	
 	static Compte connected=null;
 	static Random r = new Random();
 
