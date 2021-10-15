@@ -272,24 +272,12 @@ public class MyGame {
 		
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
 
-		Query q = em.createQuery("From PersoObtenu p JOIN Personnage on p.perso_id = Personnage.id where p.joueur_id=:id",PersoObtenu.class);
+		Query q = em.createQuery("SELECT p from PersoObtenu p where p.joueur.id=:id",PersoObtenu.class);
 		q.setParameter("id",id);
-		List<PersoObtenu> personnage = q.getResultList();
-	
-	
-		
-		System.out.println("Voici les personnages disponibles pour vous: ");
-		for(PersoObtenu po : personnage ) 
-		{
-			System.out.println(po.getPerso().getNom());
-			
-		}	
-		
-	
+		List<PersoObtenu> persos = q.getResultList();
 		
 		em.close();
-		return personnage;
-		
+		return persos;
 		
 	}
 
