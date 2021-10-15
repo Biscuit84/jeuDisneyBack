@@ -5,11 +5,31 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+
+@Entity
 public class Historique  {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	
 	private LocalDateTime dateHeurePartie;
+	
 	private LocalTime tempsPartie;
+	
 	private int positionArrivee;
+	
 	private int nbEtoilesGagnees;
+	
+	
+	
+	@ManyToOne
 	private Partie partie;
 	
 	

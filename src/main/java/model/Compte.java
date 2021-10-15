@@ -15,10 +15,15 @@ public abstract class Compte  {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected int id;
+	
 	protected String login;
+	
 	protected String password;
+	
 	protected String nom;
+	
 	protected String prenom;
+	
 	protected String mail;
 	
 	
