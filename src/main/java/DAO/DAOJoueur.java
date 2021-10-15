@@ -8,6 +8,7 @@ import javax.persistence.Query;
 
 import IDAO.IDAOJoueur;
 import model.Joueur;
+import model.PersoObtenu;
 import util.Context;
 
 public class DAOJoueur implements IDAOJoueur{
@@ -50,4 +51,20 @@ public class DAOJoueur implements IDAOJoueur{
 		em.close();
 	}
 
+
+
+
+	public  List<PersoObtenu> listePersonnagesJoueur (int id) {
+
+
+		EntityManager em = Context.getInstance().getEmf().createEntityManager();
+
+		Query q = em.createQuery("SELECT p from PersoObtenu p where p.joueur.id=:id",PersoObtenu.class);
+		q.setParameter("id",id);
+		List<PersoObtenu> persos = q.getResultList();
+
+		em.close();
+		return persos;
+
+	}
 }

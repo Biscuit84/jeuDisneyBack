@@ -120,6 +120,7 @@ public class Test {
 		String login = saisieString("Saisir votre login");
 		String password = saisieString("Saisir votre password");
 		connected=Context.getInstance().getDaoCompte().connect(login, password);
+		Context.getInstance().setConnected(connected);
 		if(connected instanceof Admin) 
 		{ 
 			menuAdmin();

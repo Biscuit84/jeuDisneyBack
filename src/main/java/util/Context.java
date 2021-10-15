@@ -25,6 +25,7 @@ import IDAO.IDAOJoueur;
 import IDAO.IDAOPersoObtenu;
 import IDAO.IDAOPersonnage;
 import IDAO.IDAOPlateau;
+import model.Compte;
 
 
 public class Context {
@@ -43,7 +44,7 @@ public class Context {
 	private IDAOPersonnage daoPersonnage = new DAOPersonnage();
 	private IDAOPlateau daoPlateau = new DAOPlateau();
 	private IDAOPersoObtenu daoPersoObtenu = new DAOPersoObtenu();
-	
+	private Compte connected;
 	
 	//SINGLETON
 	private static Context _instance;
@@ -114,6 +115,18 @@ public class Context {
 
 	public IDAOPersonnage getDaoPersonnage() {
 		return daoPersonnage;
+	}
+
+
+
+	public Compte getConnected() {
+		return connected;
+	}
+
+
+
+	public void setConnected(Compte connected) {
+		this.connected = connected;
 	}
 
 

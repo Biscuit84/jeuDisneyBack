@@ -23,7 +23,8 @@ public class Joueur extends Compte{
 	//	@OneToMany (mappedBy = "j")
 	//	private List<Partie> listePartie;
 
-
+	@OneToMany(mappedBy = "joueur")
+	List<PersoObtenu> persos;
 
 
 
@@ -33,6 +34,22 @@ public class Joueur extends Compte{
 		this.pseudo = pseudo;
 		this.level = level;
 		this.life = life;
+	}
+
+
+
+
+
+	public List<PersoObtenu> getPersos() {
+		return persos;
+	}
+
+
+
+
+
+	public void setPersos(List<PersoObtenu> persos) {
+		this.persos = persos;
 	}
 
 

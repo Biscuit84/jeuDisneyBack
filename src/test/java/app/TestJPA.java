@@ -1,11 +1,12 @@
 package app;
 
 
-import model.Personnage;
+import java.util.List;
 
 import model.Admin;
 import model.Joueur;
 import model.PersoObtenu;
+import model.Personnage;
 import plateau.CaseArrivee;
 import plateau.CaseDepart;
 import plateau.CaseDeplacement;
@@ -44,7 +45,7 @@ public class TestJPA {
 		Context.getInstance().getDaoCases().save(cpri);
 		Context.getInstance().getDaoCases().save(ca);
 
-		Context.getInstance().closeEmf();
+		
 
 
 	}
@@ -53,7 +54,7 @@ public class TestJPA {
 
 		Plateau testPlateau = new Plateau("Test", 9);
 		Context.getInstance().getDaoPlateau().save(testPlateau);
-		Context.getInstance().closeEmf();
+		
 	}
 
 	public static void initCasesPlateau() {
@@ -77,7 +78,7 @@ public class TestJPA {
 		Context.getInstance().getDaoCasesPlateau().save(cp6);
 		Context.getInstance().getDaoCasesPlateau().save(cp7);
 		Context.getInstance().getDaoCasesPlateau().save(cp8);
-		Context.getInstance().closeEmf();
+		
 	}
 
 
@@ -90,38 +91,45 @@ public class TestJPA {
 		Context.getInstance().getDaoPersonnage().save(p1);
 		Context.getInstance().getDaoPersonnage().save(p2);
 		Context.getInstance().getDaoPersonnage().save(p3);
-		Context.getInstance().closeEmf();
+		
 	}
 	
 	public static void initJoueur() {
 
 		Joueur joueur1 = new Joueur("login", "password", "nomjoueur1", "prenomjoueur1", "joueur1@mail.com", "joueur1", "0", 1);
 		Context.getInstance().getDaoJoueur().save(joueur1);
-		Context.getInstance().closeEmf();
+		
 	}
 	
 	public static void initAdmin() {
 		Admin admin1 = new Admin("admin", "admin", "nomAdmin1", "prenomAdmin1", "admin1@mail.com");
 		Context.getInstance().getDaoAdmin().save(admin1);
-		Context.getInstance().closeEmf();
+		
 	}
 	
 	
 	
 	public static void main(String[] args) {
 
-		//initCase();
-		//initPlateau();
-		//initCasesPlateau();
-		//initAdmin();
-		//initJoueur();
-		//initPersonnage();
-//		PersoObtenu po = new PersoObtenu(Context.getInstance().getDaoPersonnage().findById(1),Context.getInstance().getDaoJoueur().findById(1));
-//		PersoObtenu po1 = new PersoObtenu(Context.getInstance().getDaoPersonnage().findById(2),Context.getInstance().getDaoJoueur().findById(1));
-//		Context.getInstance().getDaoPersoObtenu().save(po);
-//		Context.getInstance().getDaoPersoObtenu().save(po1);
+		initCase();
+		initPlateau();
+		initCasesPlateau();
+		initAdmin();
+		initJoueur();
+		initPersonnage();
+		PersoObtenu po = new PersoObtenu(Context.getInstance().getDaoPersonnage().findById(1),Context.getInstance().getDaoJoueur().findById(1));
+		PersoObtenu po1 = new PersoObtenu(Context.getInstance().getDaoPersonnage().findById(2),Context.getInstance().getDaoJoueur().findById(1));
+		Context.getInstance().getDaoPersoObtenu().save(po);
+		Context.getInstance().getDaoPersoObtenu().save(po1);
 		//Test.connec();
-		MyGame.listePersonnagesJoueur(1);
+		
+		
+		List<PersoObtenu> persos=Context.getInstance().getDaoJoueur().listePersonnagesJoueur(Context.getInstance().getConnected().getId());
+		
+		for(PersoObtenu p : persos) 
+		{
+			System.out.println(p.getPerso().getNom());
+		}
 		Context.getInstance().closeEmf();
 		
 		
