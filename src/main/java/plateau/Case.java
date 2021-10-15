@@ -1,7 +1,18 @@
 package plateau;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Case {
 
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
 	protected int id;
 	protected String nom;
 //	private String effet;
