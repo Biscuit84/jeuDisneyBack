@@ -100,6 +100,8 @@ public class MyGame {
 			List <Partie> listePersonnagesDeLaPartie= new ArrayList();
 
 			System.out.println("Voici la liste des personnages disponibles");
+			
+			
 			for (Personnage p: listePersonnagesJoueur) {
 				System.out.println(p);
 			}
@@ -267,19 +269,7 @@ public class MyGame {
 
 
 	//affiche la liste des personnages d'un joueur
-	public static List<PersoObtenu> listePersonnagesJoueur (int id) {
-		
-		
-		EntityManager em = Context.getInstance().getEmf().createEntityManager();
-
-		Query q = em.createQuery("SELECT p from PersoObtenu p where p.joueur.id=:id",PersoObtenu.class);
-		q.setParameter("id",id);
-		List<PersoObtenu> persos = q.getResultList();
-		
-		em.close();
-		return persos;
-		
-	}
+	
 
 
 
