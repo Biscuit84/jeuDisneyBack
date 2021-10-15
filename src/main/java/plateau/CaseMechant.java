@@ -12,8 +12,8 @@ public class CaseMechant extends Cases {
 		
 	}
 
-	public CaseMechant(int id, String nom) {
-		super(id, nom);
+	public CaseMechant(String nom) {
+		super( nom);
 		
 	}
 

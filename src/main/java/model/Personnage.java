@@ -4,6 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+import plateau.CasesPlateau;
 
 @Entity
 public class Personnage  {
@@ -21,7 +24,8 @@ public class Personnage  {
 	private String mechant;
 	
 	private String pouvoir;
-	
+	@ManyToOne
+	private CasesPlateau position;
 //	private int position;
 	
 	public Personnage(int id, String nom, String prince, String mechant, String pouvoir) {

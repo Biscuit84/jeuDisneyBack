@@ -13,8 +13,8 @@ public class CaseVide extends Cases {
 		// TODO Auto-generated constructor stub
 	}
 
-	public CaseVide(int id, String nom) {
-		super(id, nom);
+	public CaseVide(String nom) {
+		super( nom);
 		// TODO Auto-generated constructor stub
 	}
 

@@ -16,8 +16,8 @@ public class CaseDeplacement extends Cases {
 	
 	}
 
-	public CaseDeplacement(int id, String nom) {
-		super(id, nom);
+	public CaseDeplacement( String nom) {
+		super( nom);
 		
 	}
 
