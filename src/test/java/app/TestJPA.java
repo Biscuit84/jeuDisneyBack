@@ -117,7 +117,8 @@ public class TestJPA {
 		//initJoueur();
 		//initPersonnage();
 		//Test.connec();
-		
+		Context.getInstance().getEmf();
+		Context.getInstance().closeEmf();
 		
 		
 

@@ -14,7 +14,8 @@ public class Joueur extends Compte{
 
 	private int life=3;
 
-
+	@OneToMany 
+	private List <Personnage> PersonnageCompte;
 
 
 	@OneToOne
@@ -83,6 +84,22 @@ public class Joueur extends Compte{
 
 
 
+	public List<Personnage> getPersonnageCompte() {
+		return PersonnageCompte;
+	}
+
+
+
+
+
+	public void setPersonnageCompte(List<Personnage> personnageCompte) {
+		PersonnageCompte = personnageCompte;
+	}
+
+
+
+
+
 	public Historique getHistorique() {
 		return historique;
 	}
@@ -110,7 +127,7 @@ public class Joueur extends Compte{
 
 
 
-	
+
 
 
 

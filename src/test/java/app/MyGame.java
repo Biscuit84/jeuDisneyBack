@@ -5,15 +5,22 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
 import DAO.DAOCasesPlateau;
 import DAO.DAOCompte;
 import DAO.DAOPersonnage;
 import DAO.DAOPlateau;
+import model.Compte;
 import model.Joueur;
 import model.Partie;
 import model.Personnage;
+import model.Planete;
+import model.Satellite;
 import plateau.CasesPlateau;
 import plateau.Plateau;
+import util.Context;
 
 public class MyGame {
 
@@ -76,10 +83,10 @@ public class MyGame {
 
 		try {
 			System.out.println("Voici la liste des plateaux");
-			System.out.println(daoPlateau.findAll());
+			System.out.println(Context.getInstance().getDaoPlateau().findAll());
 			int idPlateau = saisieInt("Choisissez un plateau:");
-			Plateau plateaudelaPartie = daoPlateau.findById(idPlateau);
-			System.out.println("Vous avez choisi le plateau " +plateaudelaPartie);
+			Plateau plateaudelaPartie =Context.getInstance().getDaoPlateau().findById(idPlateau);
+			System.out.println("Vous avez choisi le plateau " +plateaudelaPartie.getNom());
 
 
 
@@ -260,8 +267,26 @@ public class MyGame {
 
 	//affiche la liste des personnages d'un joueur
 	public static List<Personnage> listePersonnagesJoueur () {
-		List <Personnage> listePersonnages= new ArrayList();
-		listePersonnages=daoPersonnage.findByJoueurId(Test.connected.getId());
+		
+		
+		EntityManager em = Context.getInstance().getEmf().createEntityManager();
+
+		Query q = em.createQuery("From Personnage p",Personnage.class);
+		List<Personnage> personnage = q.getResultList();
+	
+	
+		em.close();
+		
+		for(Joueur j : ) 
+		{
+			System.out.println("--------------------");
+			System.out.println("infos de la planete : "+p.getLibelle());
+			System.out.println("Liste des satellites :");
+			for(Satellite s : p.getSatellites()) 
+			{
+				System.out.println(s.getNom());
+			}
+		listePersonnages=Context.getInstance().getDaoJoueur().);
 		return listePersonnages;
 	}
 
