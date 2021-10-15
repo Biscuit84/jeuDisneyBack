@@ -1,5 +1,7 @@
 package app;
 
+import model.Admin;
+import model.Joueur;
 import plateau.CaseArrivee;
 import plateau.CaseDepart;
 import plateau.CaseDeplacement;
@@ -80,13 +82,33 @@ public class TestJPA {
 	
 	
 	
+	public static void initJoueur() {
+
+		Joueur joueur1 = new Joueur("login", "password", "nomjoueur1", "prenomjoueur1", "joueur1@mail.com", "joueur1", "0", 1);
+		Context.getInstance().getDaoJoueur().save(joueur1);
+		Context.getInstance().closeEmf();
+	}
 	
+	public static void initAdmin() {
+		Admin admin1 = new Admin("admin", "admin", "nomAdmin1", "prenomAdmin1", "admin1@mail.com");
+		Context.getInstance().getDaoAdmin().save(admin1);
+		Context.getInstance().closeEmf();
+	}
 	
 	
 	
 	public static void main(String[] args) {
 
-		initCasesPlateau();
+		//initCase();
+		//initPlateau();
+		//initCasesPlateau();
+		//initAdmin();
+		initJoueur();
+		
+		
+		
+		
+		
 
 	}
 }
