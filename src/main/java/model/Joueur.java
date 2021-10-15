@@ -40,6 +40,15 @@ public class Joueur extends Compte{
 
 
 
+	public Joueur(String pseudo) {
+		super();
+		this.pseudo = pseudo;
+	}
+
+
+
+
+
 	public Joueur() {
 		super();
 
