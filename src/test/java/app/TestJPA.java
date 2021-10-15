@@ -1,11 +1,11 @@
 package app;
 
-<<<<<<< HEAD
+
 import model.Personnage;
-=======
+
 import model.Admin;
 import model.Joueur;
->>>>>>> AjoutInit
+
 import plateau.CaseArrivee;
 import plateau.CaseDepart;
 import plateau.CaseDeplacement;
