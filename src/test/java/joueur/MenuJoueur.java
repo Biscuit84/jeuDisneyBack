@@ -5,6 +5,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 import app.MyGame;
+import app.PartieGame;
 import app.Test;
 import model.Admin;
 import model.Compte;
@@ -51,7 +52,7 @@ public class MenuJoueur {
 		int choix = saisieInt("Choisir un menu :");
 		switch(choix) 
 		{
-		case 1 : MyGame.jouer();break;
+		case 1 : PartieGame.jouerUnePartie();;break;
 		case 2 : menuBoutiqueJoueur();break;
 		case 3 : gestionProfilJoueur(); break;
 		case 4 : Test.menuConnexion(); break;
