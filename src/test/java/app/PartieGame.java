@@ -136,7 +136,7 @@ public class PartieGame {
 		
 	}
 	
-	public static void postionJoueur(int[] positionCase, List<CasesPlateau> listeOrdreCases)
+	public static void positionJoueur(int[] positionCase, List<CasesPlateau> listeOrdreCases)
 	{
 		 System.out.println("Position des joueurs : ");
 		    for(int i=0; i<listeDesJoueurs.size(); i++)
@@ -193,96 +193,71 @@ public class PartieGame {
 	    // initialisation position des personnages : 
 	    int [] positionCase = {0,0,0,0}; //mettre case depart
 	    //System.out.println(positionCase);
-	    postionJoueur(positionCase, listeOrdreCases);
+	    positionJoueur(positionCase, listeOrdreCases);
 	    
 	    //lancement de la partie
 	   System.out.println("c'est parti !");
+		String lanceDeDe;
+		String tourSuivant;
 	    int nb=plateaudelaPartie.getNbCases()-1;
 	    do
 	     {
-	    	 
-	    	 positionCase[0]++; //test
-	    	 postionJoueur(positionCase, listeOrdreCases);
+	    	
+	    	
+	    	 for (int i=0; i<listePersoPartie.size(); i++) {
+	    		 System.out.println("\nJoueur "+listeDesJoueurs.get(i).getPseudo() +" A vous de jouer");
+	    		// pour chaque joueur demander de faire le lance de des (plus tard on cliquera sur un bouton)
+	    		 do {
+						if (i==0 || i==1 || i==2) {
+							lanceDeDe="y";
+							System.out.println("Voulez vous lancer les des? (y/n)");
+							System.out.println("y");
+							break;
+						} else {
+							lanceDeDe= saisieString("Voulez vous lancer les des? (y/n)");
+						}
+	
+					} while (lanceDeDe.equalsIgnoreCase("n"));
+	    		 
+					//generer deux lancements de des aleatoires
+					int de1 = r.nextInt(6)+1;
+					System.out.println("de 1: "+de1);
+					int de2 = r.nextInt(6)+1;
+					System.out.println("de 2: "+de2);
+					
+					int sommeDes = de1+de2;
+					
+					positionCase[i]=positionCase[i]+sommeDes;
+					
+					// si tu as depasse la case arrivee
+					if (positionCase[i]>=listeOrdreCases.size()) {
+						System.out.println("le joueur " +listeDesJoueurs.get(i).getPseudo() +" gagne !");
+						break;
+					}
+					
+					
+					do {
+						if (i==1 || i==2 || i==3) {
+							tourSuivant="y";
+							System.out.println("Fin de tour? (y/n) ");
+							System.out.println("y");
+							break;
+						} else {
+							tourSuivant = saisieString("Fin de tour? (y/n) ");
+						}
+					} while (tourSuivant.equalsIgnoreCase("n"));
+					
+						    	 
+	    	 } //fin du tour 
+	    	 positionJoueur(positionCase, listeOrdreCases);
+	    	
+
 	    	  		    	
 	    }  while (positionCase[0]<nb && positionCase[1]<nb  && positionCase[2]<nb && positionCase[3]<nb);
 	    
+	    
 	    System.out.println("fini"); //test
 	    
-	    
-	   
-	    
-	    
-	  // tourJeu ();
-	    
-//		do {
-//
-//			for (int i=0; i<listePersonnagesDeLaPartie.size(); i++) {
-//				System.out.println("\nJoueur "+listePersonnagesDeLaPartie.get(i).getPersonnage().getNom()+" A vous de jouer");
-//
-//				// pour chaque joueur demander de faire le lance de des (plus tard on cliquera sur un bouton)
-//				do {
-//					if (i==1 || i==2 || i==3) {
-//						lanceDeDe="y";
-//						System.out.println("Voulez vous lancer les des? (y/n)");
-//						System.out.println("y");
-//						break;
-//					} else {
-//						lanceDeDe= saisieString("Voulez vous lancer les des? (y/n)");
-//					}
-//
-//				} while (lanceDeDe.equalsIgnoreCase("n"));
-//
-//				//		// g�n�re "..."
-//				//		for(int j =0;j<3;j++) {
-//				//			System.out.println(".");
-//				//			Thread.sleep(1000);
-//				//		}
-//
-//
-//				//g�n�rer deux lancements de d�s al�atoires
-//				int de1 = r.nextInt(6)+1;
-//				System.out.println("de 1: "+de1);
-//				int de2 = r.nextInt(6)+1;
-//				System.out.println("de 2: "+de2);
-//
-//
-//				//r�cup�rer la position actuelle du personnage
-//				positionCase=listePersonnagesDeLaPartie.get(i).getPosition();
-//				positionCase+=calculSommeDe(de1, de2);
-//				//actualiser la nouvelle position du joueur
-//				listePersonnagesDeLaPartie.get(i).setPosition(positionCase);
-//				System.out.println("le personnage "+listePersonnagesDeLaPartie.get(i).getPersonnage().getNom()+" du joueur " +listePersonnagesDeLaPartie.get(i).getJ().getPseudo()+" est � la case "+listePersonnagesDeLaPartie.get(i).getPosition());
-//
-//
-//
-//
-//				if (positionCase>=listeOrdreCases.size()) {
-//					System.out.println("le joueur " +listePersonnagesDeLaPartie.get(i).getJ().getPseudo() +" gagne");
-//					break;
-//				}
-//
-//				do {
-//					if (i==1 || i==2 || i==3) {
-//						tourSuivant="y";
-//						System.out.println("Fin de tour? (y/n) ");
-//						System.out.println("y");
-//						break;
-//					} else {
-//						tourSuivant = saisieString("Fin de tour? (y/n) ");
-//					}
-//				} while (tourSuivant.equalsIgnoreCase("n"));
-//
-//
-//
-//			}
-//
-//
-//		} while (positionCase<listeOrdreCases.size());
-	 
-		
-		
-		
-		
 		
 		
 		
