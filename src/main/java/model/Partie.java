@@ -36,7 +36,12 @@ public class Partie {
 	private List<Joueur> joueursPartie;
 	
 	
-	
+	public Partie(Plateau plateau) {
+		this.plateau = plateau;
+		
+		
+	}
+
 
 
 	public Partie(Plateau plateau, Personnage personnage) {
