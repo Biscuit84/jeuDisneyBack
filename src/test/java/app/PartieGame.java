@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
+import DAO.DAOCases;
+import IDAO.IDAOCases;
 import model.Compte;
 import model.Joueur;
 import model.Partie;
@@ -15,9 +17,11 @@ import util.Context;
 
 public class PartieGame {
 
+	static Random r = new Random();
 	
 	static Personnage choixPerso;
-	static Random r = new Random();
+	static List<Personnage> IAChoixPersonnages;
+	static List<Personnage> listePersoPartie;
 	static List <Joueur> listeDesJoueurs; 
 	static Compte connected;
 	static Plateau plateaudelaPartie;
@@ -128,7 +132,7 @@ public class PartieGame {
 	public static void tourJeu ()
 	{
 		int positionCase = 0; //mettre case depart
-		Partie partieEssai = new Partie (plateaudelaPartie,);
+		
 		
 		
 	}
@@ -143,11 +147,29 @@ public class PartieGame {
 		Context.getInstance().setConnected(connected);
 		
 		
+		
 		listeDesJoueurs=joueurPartie();
 		plateaudelaPartie=plateauChoix();
-		persoChoix();
-		persoIA();
+		choixPerso=persoChoix();
+		IAChoixPersonnages=persoIA();
 		List <Personnage >listePersoPartie = new ArrayList();
+		listePersoPartie.add(choixPerso);
+		listePersoPartie.addAll(IAChoixPersonnages);
+		System.out.println(listePersoPartie);
+		
+		Partie partieEssai = new Partie (plateaudelaPartie);
+	
+	    partieEssai.setPersonnages(listePersoPartie); 
+	    
+	    //System.out.println(partieEssai.getPersonnages());
+	    
+	    
+	 
+		
+		
+		
+		
+		
 		
 		
 		

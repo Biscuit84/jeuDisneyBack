@@ -11,6 +11,7 @@ import DAO.DAOCasesPlateau;
 import DAO.DAOCompte;
 import DAO.DAOHistorique;
 import DAO.DAOJoueur;
+import DAO.DAOPartie;
 import DAO.DAOPersoObtenu;
 import DAO.DAOPersonnage;
 import DAO.DAOPlateau;
@@ -22,6 +23,7 @@ import IDAO.IDAOCasesPlateau;
 import IDAO.IDAOCompte;
 import IDAO.IDAOHistorique;
 import IDAO.IDAOJoueur;
+import IDAO.IDAOPartie;
 import IDAO.IDAOPersoObtenu;
 import IDAO.IDAOPersonnage;
 import IDAO.IDAOPlateau;
@@ -36,6 +38,7 @@ public class Context {
 	private IDAOBoutique daoBoutique = new DAOBoutique();
 	private IDAOCarte daoCarte = new DAOCarte();
 	private IDAOCases daoCases = new DAOCases();
+	private IDAOPartie daoPartie = new DAOPartie();
 	private IDAOCasesPlateau daoCasesPlateau = new DAOCasesPlateau();
 	private IDAOCompte daoCompte = new DAOCompte();
 	private IDAOAdmin daoAdmin = new DAOAdmin();
@@ -147,6 +150,12 @@ public class Context {
 
 	public IDAOPersoObtenu getDaoPersoObtenu() {
 		return daoPersoObtenu;
+	}
+
+
+
+	public IDAOPartie getDaoPartie() {
+		return daoPartie;
 	}
 
 
