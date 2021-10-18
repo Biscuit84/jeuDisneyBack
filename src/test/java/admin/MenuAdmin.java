@@ -19,8 +19,8 @@ import util.Context;
 
 public class MenuAdmin {
 
-	static Compte connected=null;
-	static Random r = new Random();
+	static Compte connected=Context.getInstance().getConnected();
+
 
 	public static String saisieString(String msg) 
 	{

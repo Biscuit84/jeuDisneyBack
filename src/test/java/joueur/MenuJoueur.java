@@ -16,7 +16,7 @@ import util.Context;
 public class MenuJoueur {
 	
 	
-	static Compte connected=null;
+	static Compte connected=Context.getInstance().getConnected();
 	static Random r = new Random();
 
 	public static String saisieString(String msg) 
