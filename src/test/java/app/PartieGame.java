@@ -22,7 +22,7 @@ import util.Context;
 public class PartieGame {
 
 	static Random r = new Random();
-
+	
 	static Personnage choixPerso;
 	static List<Personnage> IAChoixPersonnages;
 	static List<Personnage> listePersoPartie;
@@ -30,10 +30,10 @@ public class PartieGame {
 	static Compte connected;
 	static Plateau plateaudelaPartie;
 	static List<CasesPlateau> listeOrdreCases;
-
+	
 	static int[] positionCase;
-
-
+	
+	
 	public static int saisieInt(String msg) 
 	{
 		Scanner sc = new Scanner(System.in);
@@ -69,8 +69,8 @@ public class PartieGame {
 		System.out.println("Bienvenue! \nVoici la liste des Joueurs");
 		System.out.println(listeDesJoueurs);
 
-
-
+		
+		
 		return listeDesJoueurs;
 
 
@@ -85,8 +85,8 @@ public class PartieGame {
 		int idPlateau = saisieInt("Choisissez un plateau:");
 		Plateau plateaudelaPartie =Context.getInstance().getDaoPlateau().findById(idPlateau);
 		System.out.println("Vous avez choisi le plateau " +plateaudelaPartie.getNom());
-
-
+		
+		
 		return plateaudelaPartie;
 
 	}
@@ -111,7 +111,7 @@ public class PartieGame {
 
 
 	}
-
+	
 	public static List<Personnage> persoIA()
 	{
 		//Affiche la liste de tous les perso dispo pour IA:
@@ -120,50 +120,63 @@ public class PartieGame {
 		System.out.println(listePersonnagesIA);
 
 		//tirage aleatoire pour choix des perso IA
-
+		
 		List <Personnage> IAChoixPersonnage = new ArrayList ();
-
+		
 		for (int i=0;i<=2;i++) {
 			int nombreAleatoireIA = r.nextInt(listePersonnagesIA.size());
 			Personnage personnageIA= listePersonnagesIA.get(nombreAleatoireIA);
 			IAChoixPersonnage.add(personnageIA);
 			System.out.println(listeDesJoueurs.get(i).getPseudo()+" joue avec "+personnageIA);
 		}
-
-
-
+		
+		
+		
 		return IAChoixPersonnage;
-
+		
 	}
-
+	
 	public static void positionJoueur(int[] positionCase, List<CasesPlateau> listeOrdreCases)
 	{
-		System.out.println("Position des joueurs : ");
-		for(int i=0; i<listeDesJoueurs.size(); i++)
-		{ 
-			if (positionCase[i]>=listeOrdreCases.size()) {
-				System.out.println(listeDesJoueurs.get(i).getPseudo()+" est arrivé");
-			}
-			else {
-				System.out.println(listeDesJoueurs.get(i).getPseudo() + " est sur la case " + positionCase[i] + ". C'est une case " + listeOrdreCases.get(positionCase[i]).getUneCase().getNom() +".");
-			}
-
-		}
-
+		 System.out.println("Position des joueurs : ");
+		    for(int i=0; i<listeDesJoueurs.size(); i++)
+		    { 
+		    if (positionCase[i]>=listeOrdreCases.size()) {
+		    	System.out.println(listeDesJoueurs.get(i).getPseudo()+" est arrivé");
+		    }
+		    else {
+		    	System.out.println(listeDesJoueurs.get(i).getPseudo() + " est sur la case " + positionCase[i] + ". C'est une case " + listeOrdreCases.get(positionCase[i]).getUneCase().getNom() +".");
+		    }
+		    
+		    }
+		    
 	}
-
-
+	
+	
 
 	public static int[] tourJeu (int[] posistionCase)
 	{
-
+		
 		//String lanceDeDe;
 		//String tourSuivant;
-
-		positionCase[0]++; //test
+		
+	   positionCase[0]++; //test
 		return positionCase;
 	}
-	public static void jouerUnePartie() {
+	
+
+
+	public static void main(String[] args) {
+
+		
+		// a effacer
+		String login = saisieString("Saisir votre login");
+		String password = saisieString("Saisir votre password");
+		connected=Context.getInstance().getDaoCompte().connect(login, password);
+		Context.getInstance().setConnected(connected);
+		
+		
+		// initialisation de la partie
 		listeDesJoueurs=joueurPartie();
 		plateaudelaPartie=plateauChoix();
 		choixPerso=persoChoix();
@@ -172,118 +185,101 @@ public class PartieGame {
 		listePersoPartie.add(choixPerso); 
 		listePersoPartie.addAll(IAChoixPersonnages);
 		System.out.println(listePersoPartie);
-
+		
 		Partie partieEssai = new Partie (plateaudelaPartie); //creation de la partie
 		//Context.getInstance().getDaoPartie().save(partieEssai); // on save la création de la partie
 		partieEssai.setPersonnages(listePersoPartie); //on dit que ces persos sont dans cette partie
-		//System.out.println(partieEssai.getPersonnages()); //verif
-
-		List<CasesPlateau>listeOrdreCases=Context.getInstance().getDaoPlateau().listeCasesPlateau(plateaudelaPartie.getId()); // on charge les cases du plateau		
+	    //System.out.println(partieEssai.getPersonnages()); //verif
+	    
+	    List<CasesPlateau>listeOrdreCases=Context.getInstance().getDaoPlateau().listeCasesPlateau(plateaudelaPartie.getId()); // on charge les cases du plateau		
 		System.out.println(listeOrdreCases);
-
-
-
-		// initialisation position des personnages : 
-		int [] positionCase = {0,0,0,0}; //mettre case depart
-		//System.out.println(positionCase);
-		positionJoueur(positionCase, listeOrdreCases);
-
-		//lancement de la partie
-		System.out.println("c'est parti !");
+	    
+	    
+	    
+	    // initialisation position des personnages : 
+	    int [] positionCase = {0,0,0,0}; //mettre case depart
+	    //System.out.println(positionCase);
+	    positionJoueur(positionCase, listeOrdreCases);
+	    
+	    //lancement de la partie
+	   System.out.println("c'est parti !");
 		String lanceDeDe;
 		String tourSuivant;
-		int nb=plateaudelaPartie.getNbCases()-1;
-		do
-		{
+	    int nb=plateaudelaPartie.getNbCases()-1;
+	    do
+	     {
+	    	
+	    	
+	    	 for (int i=0; i<listePersoPartie.size(); i++) {
+	    		 System.out.println("\nJoueur "+listeDesJoueurs.get(i).getPseudo() +" A vous de jouer");
+	    		// pour chaque joueur demander de faire le lance de des (plus tard on cliquera sur un bouton)
+	    		 do {
+						if (i==0 || i==1 || i==2) {
+							//lanceDeDe="y";
+							//System.out.println("Voulez vous lancer les des? (y/n)");
+							//System.out.println("y");
+							System.out.println(listeDesJoueurs.get(i).getPseudo() +" lance les des.");
+							break;
+						} else {
+							lanceDeDe= saisieString("Voulez vous lancer les des? (y/n)");
+						}
+	
+					} while (lanceDeDe.equalsIgnoreCase("n"));
+	    		 
+					//generer deux lancements de des aleatoires
+					int de1 = r.nextInt(6)+1;
+					System.out.println("de 1: "+de1);
+					int de2 = r.nextInt(6)+1;
+					//System.out.println("de 2: "+de2);
+					
+					//int sommeDes = de1+de2;
+					int sommeDes = de1;
+					System.out.println("Vous avancez de "+ sommeDes +" cases.");
+					
+					positionCase[i]=positionCase[i]+sommeDes;
+					
 
-
-			for (int i=0; i<listePersoPartie.size(); i++) {
-				System.out.println("\nJoueur "+listeDesJoueurs.get(i).getPseudo() +" A vous de jouer");
-				// pour chaque joueur demander de faire le lance de des (plus tard on cliquera sur un bouton)
-				do {
-					if (i==0 || i==1 || i==2) {
-						//lanceDeDe="y";
-						//System.out.println("Voulez vous lancer les des? (y/n)");
-						//System.out.println("y");
-						System.out.println(listeDesJoueurs.get(i).getPseudo() +" lance les des.");
+					
+					// si tu as depasse la case arrivee
+					if (positionCase[i]>=nb) {
+						System.out.println("le joueur " +listeDesJoueurs.get(i).getPseudo() +" gagne !");
 						break;
-					} else {
-						lanceDeDe= saisieString("Voulez vous lancer les des? (y/n)");
 					}
-
-				} while (lanceDeDe.equalsIgnoreCase("n"));
-
-				//generer deux lancements de des aleatoires
-				int de1 = r.nextInt(6)+1;
-				System.out.println("de 1: "+de1);
-				int de2 = r.nextInt(6)+1;
-				System.out.println("de 2: "+de2);
-
-				//int sommeDes = de1+de2;
-				int sommeDes = de1;
-				System.out.println("Vous avancez de "+ sommeDes +" cases.");
-
-				positionCase[i]=positionCase[i]+sommeDes;
-
-
-
-				// si tu as depasse la case arrivee
-				if (positionCase[i]>=nb) {
-					System.out.println("le joueur " +listeDesJoueurs.get(i).getPseudo() +" gagne !");
-					break;
-				}
-				else {
-					System.out.println("Vous êtes sur la case "+ positionCase[i] + ". C'est une case " + listeOrdreCases.get(positionCase[i]).getUneCase().getNom() +".");
-				}
-
-
-
-				do {
-					if (i==0 || i==1 || i==2) {
-						//tourSuivant="y";
-						//System.out.println("Fin de tour? (y/n) ");
-						//System.out.println("y");
-						System.out.println(listeDesJoueurs.get(i).getPseudo() +" a fini son tour.");
-						break;
-					} else {
-						tourSuivant = saisieString("Fin de tour? (y/n) ");
+					else {
+						System.out.println("Vous êtes sur la case "+ positionCase[i] + ". C'est une case " + listeOrdreCases.get(positionCase[i]).getUneCase().getNom() +".");
 					}
-				} while (tourSuivant.equalsIgnoreCase("n"));
+					
+					
+					
+					do {
+						if (i==0 || i==1 || i==2) {
+							//tourSuivant="y";
+							//System.out.println("Fin de tour? (y/n) ");
+							//System.out.println("y");
+							System.out.println(listeDesJoueurs.get(i).getPseudo() +" a fini son tour.");
+							break;
+						} else {
+							tourSuivant = saisieString("Fin de tour? (y/n) ");
+						}
+					} while (tourSuivant.equalsIgnoreCase("n"));
+					
+						    	 
+	    	 } //Fin du tour 
+	    	 System.out.println("-------------------------------------------------------------");
+	    	 positionJoueur(positionCase, listeOrdreCases);
+	    	
 
-
-			} //fin du tour 
-			System.out.println("-------------------------------------------------");
-			positionJoueur(positionCase, listeOrdreCases);
-
-
-
-		}  while (positionCase[0]<nb && positionCase[1]<nb  && positionCase[2]<nb && positionCase[3]<nb);
-
-
-		System.out.println("fini"); //test
-
-
-
-
+	    	  		    	
+	    }  while (positionCase[0]<nb && positionCase[1]<nb  && positionCase[2]<nb && positionCase[3]<nb);
+	    
+	    
+	    System.out.println("fini"); //test
+	    
+		
+		
+		
 		//Context.getInstance().getDaoPartie().save(partieEssai); // on save la création de la partie
 		Context.getInstance().closeEmf();
 	}
 
-
-
-
-
-
-public static void main(String[] args) {
-
-
-	// a effacer
-	String login = saisieString("Saisir votre login");
-	String password = saisieString("Saisir votre password");
-	connected=Context.getInstance().getDaoCompte().connect(login, password);
-	Context.getInstance().setConnected(connected);
-
 }
-}	
-
-
