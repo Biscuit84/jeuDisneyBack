@@ -111,7 +111,7 @@ public class PartieGame {
 		
 		List <Personnage> IAChoixPersonnage = new ArrayList ();
 		
-		for (int i=1;i<=4;i++) {
+		for (int i=0;i<=2;i++) {
 			int nombreAleatoireIA = r.nextInt(listePersonnagesIA.size());
 			Personnage personnageIA= listePersonnagesIA.get(nombreAleatoireIA);
 			IAChoixPersonnage.add(personnageIA);
