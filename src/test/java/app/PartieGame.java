@@ -20,7 +20,7 @@ public class PartieGame {
 	static Random r = new Random();
 	static List <Joueur> listeDesJoueurs; 
 	static Compte connected;
-	
+	static Plateau plateaudelaPartie;
 	
 	public static int saisieInt(String msg) 
 	{
@@ -128,7 +128,7 @@ public class PartieGame {
 	public static void tourJeu ()
 	{
 		int positionCase = 0; //mettre case depart
-		
+		Partie partieEssai = new Partie (plateaudelaPartie,);
 		
 		
 	}
@@ -144,9 +144,12 @@ public class PartieGame {
 		
 		
 		listeDesJoueurs=joueurPartie();
-		plateauChoix();
+		plateaudelaPartie=plateauChoix();
 		persoChoix();
 		persoIA();
+		List <Personnage >listePersoPartie = new ArrayList();
+		
+		
 		
 		Context.getInstance().closeEmf();
 	}
