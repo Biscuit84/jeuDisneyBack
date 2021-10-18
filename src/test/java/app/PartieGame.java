@@ -237,7 +237,7 @@ public class PartieGame {
 					
 					
 					do {
-						if (i==1 || i==2 || i==3) {
+						if (i==0 || i==1 || i==2) {
 							tourSuivant="y";
 							System.out.println("Fin de tour? (y/n) ");
 							System.out.println("y");
