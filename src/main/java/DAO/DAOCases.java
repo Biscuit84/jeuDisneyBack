@@ -23,7 +23,7 @@ public class DAOCases implements IDAOCases{
 	@Override
 	public List<Cases> findAll() {
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
-		Query requete = em.createQuery("from Case a",Cases.class);
+		Query requete = em.createQuery("from Cases a",Cases.class);
 		List<Cases> Cases = requete.getResultList();
 		em.close();
 		return Cases;
