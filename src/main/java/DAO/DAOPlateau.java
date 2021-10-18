@@ -6,6 +6,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import IDAO.IDAOPlateau;
+import model.PersoObtenu;
+import plateau.CasesPlateau;
 import plateau.Plateau;
 import util.Context;
 
@@ -49,4 +51,22 @@ public class DAOPlateau implements IDAOPlateau{
 		em.close();
 	}
 
+
+
+	public  List<CasesPlateau> listeCasesPlateau (int id) {
+
+		EntityManager em = Context.getInstance().getEmf().createEntityManager();
+
+		Query q = em.createQuery("SELECT p from CasesPlateau p where p.plateau.id=:id",CasesPlateau.class);
+		q.setParameter("id",id);
+		List<CasesPlateau> cases = q.getResultList();
+
+		em.close();
+		return cases;
+
+	}
+	
+	
+	
+	
 }

@@ -5,22 +5,34 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
+import javax.persistence.criteria.CriteriaBuilder.Case;
+
+import DAO.DAOCases;
+import IDAO.IDAOCases;
 import model.Compte;
 import model.Joueur;
 import model.Partie;
 import model.PersoObtenu;
 import model.Personnage;
+
+import plateau.CasesPlateau;
 import plateau.Plateau;
 import util.Context;
 
 public class PartieGame {
 
+	static Random r = new Random();
 	
 	static Personnage choixPerso;
-	static Random r = new Random();
+	static List<Personnage> IAChoixPersonnages;
+	static List<Personnage> listePersoPartie;
 	static List <Joueur> listeDesJoueurs; 
 	static Compte connected;
 	static Plateau plateaudelaPartie;
+	static List<CasesPlateau> listeOrdreCases;
+	
+	static int[] positionCase;
+	
 	
 	public static int saisieInt(String msg) 
 	{
@@ -124,33 +136,132 @@ public class PartieGame {
 		
 	}
 	
-
-	public static void tourJeu ()
+	public static void positionJoueur(int[] positionCase, List<CasesPlateau> listeOrdreCases)
 	{
-		int positionCase = 0; //mettre case depart
-		Partie partieEssai = new Partie (plateaudelaPartie,);
+		 System.out.println("Position des joueurs : ");
+		    for(int i=0; i<listeDesJoueurs.size(); i++)
+		    { 
+		    System.out.println(listeDesJoueurs.get(i).getPseudo() + " est sur la case " + positionCase[i] + ". C'est une case " + listeOrdreCases.get(positionCase[i]).getUneCase().getNom() +".");
+		    }
+		    
+	}
+	
+	
+
+	public static int[] tourJeu (int[] posistionCase)
+	{
 		
+		//String lanceDeDe;
+		//String tourSuivant;
 		
+	   positionCase[0]++; //test
+		return positionCase;
 	}
 	
 
 
 	public static void main(String[] args) {
 
+		
+		// a effacer
 		String login = saisieString("Saisir votre login");
 		String password = saisieString("Saisir votre password");
 		connected=Context.getInstance().getDaoCompte().connect(login, password);
 		Context.getInstance().setConnected(connected);
 		
 		
+		// initialisation de la partie
 		listeDesJoueurs=joueurPartie();
 		plateaudelaPartie=plateauChoix();
-		persoChoix();
-		persoIA();
+		choixPerso=persoChoix();
+		IAChoixPersonnages=persoIA();
 		List <Personnage >listePersoPartie = new ArrayList();
+		listePersoPartie.add(choixPerso); 
+		listePersoPartie.addAll(IAChoixPersonnages);
+		System.out.println(listePersoPartie);
+		
+		Partie partieEssai = new Partie (plateaudelaPartie); //creation de la partie
+		//Context.getInstance().getDaoPartie().save(partieEssai); // on save la création de la partie
+		partieEssai.setPersonnages(listePersoPartie); //on dit que ces persos sont dans cette partie
+	    //System.out.println(partieEssai.getPersonnages()); //verif
+	    
+	    List<CasesPlateau>listeOrdreCases=Context.getInstance().getDaoPlateau().listeCasesPlateau(plateaudelaPartie.getId()); // on charge les cases du plateau		
+		System.out.println(listeOrdreCases);
+	    
+	    
+	    
+	    // initialisation position des personnages : 
+	    int [] positionCase = {0,0,0,0}; //mettre case depart
+	    //System.out.println(positionCase);
+	    positionJoueur(positionCase, listeOrdreCases);
+	    
+	    //lancement de la partie
+	   System.out.println("c'est parti !");
+		String lanceDeDe;
+		String tourSuivant;
+	    int nb=plateaudelaPartie.getNbCases()-1;
+	    do
+	     {
+	    	
+	    	
+	    	 for (int i=0; i<listePersoPartie.size(); i++) {
+	    		 System.out.println("\nJoueur "+listeDesJoueurs.get(i).getPseudo() +" A vous de jouer");
+	    		// pour chaque joueur demander de faire le lance de des (plus tard on cliquera sur un bouton)
+	    		 do {
+						if (i==0 || i==1 || i==2) {
+							lanceDeDe="y";
+							System.out.println("Voulez vous lancer les des? (y/n)");
+							System.out.println("y");
+							break;
+						} else {
+							lanceDeDe= saisieString("Voulez vous lancer les des? (y/n)");
+						}
+	
+					} while (lanceDeDe.equalsIgnoreCase("n"));
+	    		 
+					//generer deux lancements de des aleatoires
+					int de1 = r.nextInt(6)+1;
+					System.out.println("de 1: "+de1);
+					int de2 = r.nextInt(6)+1;
+					System.out.println("de 2: "+de2);
+					
+					int sommeDes = de1+de2;
+					
+					positionCase[i]=positionCase[i]+sommeDes;
+					
+					// si tu as depasse la case arrivee
+					if (positionCase[i]>=listeOrdreCases.size()) {
+						System.out.println("le joueur " +listeDesJoueurs.get(i).getPseudo() +" gagne !");
+						break;
+					}
+					
+					
+					do {
+						if (i==1 || i==2 || i==3) {
+							tourSuivant="y";
+							System.out.println("Fin de tour? (y/n) ");
+							System.out.println("y");
+							break;
+						} else {
+							tourSuivant = saisieString("Fin de tour? (y/n) ");
+						}
+					} while (tourSuivant.equalsIgnoreCase("n"));
+					
+						    	 
+	    	 } //fin du tour 
+	    	 positionJoueur(positionCase, listeOrdreCases);
+	    	
+
+	    	  		    	
+	    }  while (positionCase[0]<nb && positionCase[1]<nb  && positionCase[2]<nb && positionCase[3]<nb);
+	    
+	    
+	    System.out.println("fini"); //test
+	    
 		
 		
 		
+		//Context.getInstance().getDaoPartie().save(partieEssai); // on save la création de la partie
 		Context.getInstance().closeEmf();
 	}
 
