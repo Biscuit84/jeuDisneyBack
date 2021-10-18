@@ -21,7 +21,7 @@ import plateau.CasesPlateau;
 import plateau.Plateau;
 import util.Context;
 
-public class TestJPA {
+public class Init {
 
 	public static void initCase() {
 
