@@ -18,7 +18,7 @@ import plateau.Plateau;
 import util.Context;
 
 public class MenuAdmin {
-	
+
 	static Compte connected=null;
 	static Random r = new Random();
 
@@ -44,7 +44,7 @@ public class MenuAdmin {
 	}
 
 
-	
+
 	public static void menuAdmin() {
 		System.out.println("Menu Admin");
 		System.out.println("1- Gestion du profil");
@@ -56,8 +56,8 @@ public class MenuAdmin {
 		int choix = saisieInt("Choisir un menu :");
 		switch(choix) 
 		{
-		case 1 : gestionProfilAdmin(); break;
-		case 2 : gestionComptes();break;
+		case 1 : gestionProfilAdmin(); break; //fini
+		case 2 : gestionComptes();break;//fini
 		case 3 : gestionParties();break;
 		case 4 : gestionBoutique(); break;
 		case 5 : Test.menuConnexion(); break;
@@ -184,21 +184,19 @@ public class MenuAdmin {
 	public static void gestionParties() {
 		System.out.println("Menu Admin/Gestion des Parties");
 		System.out.println("1- Gestion des plateaux");
-		System.out.println("2- Gestion des cases");
-		System.out.println("3- Gestion des cartes");
-		System.out.println("4- Gestion des personnages");
-		System.out.println("5- Gestion des duels");
-		System.out.println("6- Retour au menu Admin");	
+		System.out.println("2- Gestion des cartes");
+		System.out.println("3- Gestion des personnages");
+		System.out.println("4- Gestion des duels");
+		System.out.println("5- Retour au menu Admin");	
 
 		int choix = saisieInt("Choisir un menu :");
 		switch(choix) 
 		{
-		case 1 : gestionPlateaux();break;
-		case 2 : gestionCases();break;
-		case 3 : gestionCartes(); break;
-		case 4 : gestionPersonnages(); break;
-		case 5 : gestionDuels(); break;
-		case 6 : menuAdmin(); break;
+		case 1 : gestionPlateaux();break;//fini
+		case 2 : gestionCartes(); break;
+		case 3 : gestionPersonnages(); break;//fini
+		case 4 : gestionDuels(); break;
+		case 5 : menuAdmin(); break;
 		}
 		gestionParties();
 
@@ -216,7 +214,7 @@ public class MenuAdmin {
 
 	}
 
-	public static void gestionPersonnages() {
+	public static void gestionPersonnages() {//fini
 		System.out.println("Menu Admin/Gestion des Parties/Gestion des Personnages");
 		System.out.println("1- Créer un nouveau personnage");
 		System.out.println("2- Supprimer un personnage");
@@ -254,7 +252,7 @@ public class MenuAdmin {
 		perso=Context.getInstance().getDaoPersonnage().save(perso);
 		System.out.println("Le personnage n°"+choixPerso+" a bien ete modifie");
 		System.out.println(perso);
-		
+
 		gestionPersonnages();
 
 	}
@@ -269,7 +267,7 @@ public class MenuAdmin {
 		perso=Context.getInstance().getDaoPersonnage().save(perso);
 		System.out.println("Le personnage n°"+choixPerso+" a bien ete modifie");
 		System.out.println(perso);
-		
+
 		gestionPersonnages();
 
 	}
@@ -284,7 +282,7 @@ public class MenuAdmin {
 		perso=Context.getInstance().getDaoPersonnage().save(perso);
 		System.out.println("Le personnage n°"+choixPerso+" a bien ete modifie");
 		System.out.println(perso);
-		
+
 		gestionPersonnages();
 
 	}
@@ -299,7 +297,7 @@ public class MenuAdmin {
 		perso=Context.getInstance().getDaoPersonnage().save(perso);
 		System.out.println("Le personnage n°"+choixPerso+" a bien ete modifie");
 		System.out.println(perso);
-		
+
 		gestionPersonnages();
 
 	}
@@ -314,11 +312,11 @@ public class MenuAdmin {
 		perso=Context.getInstance().getDaoPersonnage().save(perso);
 		System.out.println("Le personnage n°"+choixPerso+" a bien ete modifie");
 		System.out.println(perso);
-		
+
 		gestionPersonnages();
 
 	}
-	
+
 
 	public static void supprimerPersonnage() {
 		System.out.println("Voici la liste des personnages existants:");
@@ -369,18 +367,18 @@ public class MenuAdmin {
 
 	}
 
-	private static void gestionCases() {
-		// TODO Auto-generated method stub
+	
 
-	}
 
-	private static void gestionPlateaux() {
+	
+
+	public static void gestionPlateaux() {
 		System.out.println("Menu Admin/Gestion des Parties/Gestion des Plateaux");
 		System.out.println("1- Ajouter un nouveau plateau");
 		System.out.println("2- Supprimer un plateau");
 		System.out.println("3- Modifier le nom d'un plateau");
-		System.out.println("4- Modifier le nombre de cases d'un plateau");
-		System.out.println("5- Assigner des cases au plateau");
+		System.out.println("4- Assigner des cases au plateau");
+		System.out.println("5- Modifier le nombre de cases d'un plateau");
 		System.out.println("6- Retour au menu Admin");
 
 		int choix = saisieInt("Choisir un menu :");
@@ -389,24 +387,53 @@ public class MenuAdmin {
 		case 1 : creerNewPlateau();break;
 		case 2 : supprimerPlateau();break;
 		case 3 : modifNomPlateau();break;
-		case 4 : modifNbCasesPlateau();break;
-		case 5 : modifCasesPlateau();break;
+		case 4 : modifCasesPlateau();break;
+		case 5 : modifNbrCases();break;
 		case 6 : menuAdmin(); break;
 		}
 		gestionPlateaux();
 
 	}
-	
-	
-	
-	
+
+
+
+
+	private static void modifNbrCases() {
+		System.out.println("Voici la liste des plateaux existants:");
+		System.out.println(Context.getInstance().getDaoPlateau().findAll());
+		int choixPlateau = saisieInt("De quel plateau voulez-vous modifier des cases? (n°id)");
+		Plateau plateau = Context.getInstance().getDaoPlateau().findById(choixPlateau);
+		System.out.println("Il y a "+plateau.getNbCases()+" cases dans le plateau");
+		int ordre = saisieInt("A quelle ordre voulez vous inserer la case ?");
+		EntityManager em = Context.getInstance().getEmf().createEntityManager();
+		em.getTransaction().begin();
+		Query q = em.createNativeQuery("UPDATE `casesplateau` SET `ordreCase` = ordreCase+'1' WHERE `casesplateau`.`ordreCase`>="+ordre+" AND plateau_id="+plateau.getId());
+
+		//System.out.println("UPDATE `casesplateau` SET `ordreCase` = ordreCase+'1' WHERE `casesplateau`.`ordreCase`>="+ordre+" AND plateau_id="+plateau.getId());
+		q.executeUpdate();
+		em.getTransaction().commit();
+		
+		plateau.setNbCases(plateau.getNbCases()+1);
+		plateau=Context.getInstance().getDaoPlateau().save(plateau);
+		System.out.println(Context.getInstance().getDaoCases().findAll());
+		int modifCase = saisieInt("Quelle type de case ? (n°id)");
+		Cases c= Context.getInstance().getDaoCases().findById(modifCase);
+		CasesPlateau cp = new CasesPlateau(plateau, c, ordre);
+		Context.getInstance().getDaoCasesPlateau().save(cp);
+		
+		
+		
+		
+		
+	}
+
 	public static void modifCasesPlateau() {
 		System.out.println("Voici la liste des plateaux existants:");
 		System.out.println(Context.getInstance().getDaoPlateau().findAll());
 		int choixPlateau = saisieInt("De quel plateau voulez-vous modifier des cases? (n°id)");
 		Plateau plateau = Context.getInstance().getDaoPlateau().findById(choixPlateau);
 		System.out.println("Il y a "+plateau.getNbCases()+" cases dans le plateau");
-		
+
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
 		Query q = em.createQuery("SELECT cp from CasesPlateau cp where cp.plateau.id=:id",CasesPlateau.class);
 		q.setParameter("id",plateau.getId());
@@ -415,7 +442,7 @@ public class MenuAdmin {
 		for (CasesPlateau cp:casesPlateau) {
 			System.out.println(cp.getIdCasePlateau()+"  "+cp.getUneCase().getNom());
 		}
-		
+
 		int choixCase = saisieInt("Quelle case voulez-vous modifier? (n°id)");
 		CasesPlateau cp = Context.getInstance().getDaoCasesPlateau().findById(choixCase);
 		System.out.println(cp);
@@ -424,26 +451,13 @@ public class MenuAdmin {
 		cp.getUneCase().setId(modifCase);
 		cp=Context.getInstance().getDaoCasesPlateau().save(cp);
 		System.out.println(cp);
-		
-		
+
+
 		gestionPlateaux();
-		
+
 	}
 
-	public static void modifNbCasesPlateau() {
-		System.out.println("Voici la liste des plateaux existants:");
-		System.out.println(Context.getInstance().getDaoPlateau().findAll());
-		int choixPlateau = saisieInt("De quel plateau voulez-vous modifier le nombre de cases? (n°id)");
-		Plateau plateau = Context.getInstance().getDaoPlateau().findById(choixPlateau);
-		int nouveauNbrPlateau = saisieInt("Entrez le nouveau nb de cases du plateau");
-		plateau.setNbCases(nouveauNbrPlateau);
-		plateau=Context.getInstance().getDaoPlateau().save(plateau);
-		System.out.println("Le personnage n°"+choixPlateau+" a bien ete modifie");
-		System.out.println(plateau);
-		
-		gestionPlateaux();
-		
-	}
+
 
 	public static void modifNomPlateau() {
 		System.out.println("Voici la liste des plateaux existants:");
@@ -455,9 +469,9 @@ public class MenuAdmin {
 		plateau=Context.getInstance().getDaoPlateau().save(plateau);
 		System.out.println("Le personnage n°"+choixPlateau+" a bien ete modifie");
 		System.out.println(plateau);
-		
+
 		gestionPlateaux();
-		
+
 	}
 
 	public static void supprimerPlateau() {
@@ -465,12 +479,12 @@ public class MenuAdmin {
 		System.out.println(Context.getInstance().getDaoPlateau().findAll());
 		int choixPlateau = saisieInt("Quel plateau voulez-vous supprimer? (n°id)");
 		Plateau plateauASupprimer = Context.getInstance().getDaoPlateau().findById(choixPlateau);
-		System.out.println("Vous allez supprimer definitivement le personnage :"+plateauASupprimer);
+		System.out.println("Vous allez supprimer definitivement le plateau :"+plateauASupprimer);
 		String confirmationChoix = saisieString("Etes-vous sur? (y/n)");
 
 		if (confirmationChoix.equalsIgnoreCase("y")) {
 			Context.getInstance().getDaoPlateau().delete(plateauASupprimer);
-			System.out.println("Le personnage "+plateauASupprimer+" a bien ete supprime de la base de donnee");
+			System.out.println("Le plateau "+plateauASupprimer+" a bien ete supprime de la base de donnee");
 		}
 		else {
 			System.out.println("Que voulez vous faire?");
@@ -480,13 +494,13 @@ public class MenuAdmin {
 			int choix = saisieInt("Choisir un menu :");
 			switch(choix) 
 			{
-			case 1 : supprimerPersonnage();break;
+			case 1 : supprimerPlateau();break;
 			case 2 : gestionPlateaux();break;
 			}
 		}
 
 		gestionPlateaux();
-		
+
 	}
 
 	public static void creerNewPlateau() {
@@ -496,18 +510,32 @@ public class MenuAdmin {
 		int nbCases = saisieInt("Saisir le nombre de cases du nouveau plateau:");
 		Plateau newP= new Plateau(nomPlateau,nbCases);
 		newP=Context.getInstance().getDaoPlateau().save(newP);
+		CasesPlateau cf=new CasesPlateau(newP,Context.getInstance().getDaoCases().findById(1),0);
+		Context.getInstance().getDaoCasesPlateau().save(cf);
+
+		for(int i=1; i<=nbCases-2; i++ ) {
+			CasesPlateau c=new CasesPlateau(newP,Context.getInstance().getDaoCases().findById(2),i);
+			c=Context.getInstance().getDaoCasesPlateau().save(c);
+			System.out.println(Context.getInstance().getDaoCases().findAll());
+			int modifCase = saisieInt("Quelle type de case ? (n°id)");
+			c.getUneCase().setId(modifCase);
+			c=Context.getInstance().getDaoCasesPlateau().save(c);
+		}
+		CasesPlateau cl=new CasesPlateau(newP,Context.getInstance().getDaoCases().findById(9),nbCases-1);
+		Context.getInstance().getDaoCasesPlateau().save(cl);
+
 		System.out.println("Bravo! vous venez de creer le nouveau plateau: "+Context.getInstance().getDaoPlateau().findById(newP.getId()));
 
 		gestionPlateaux();
-		
+
 	}
 
 	public static void main(String[] args) {
-		modifCasesPlateau();
+		modifNbrCases();
 
 	}
-	
-	
 
-	
+
+
+
 }
