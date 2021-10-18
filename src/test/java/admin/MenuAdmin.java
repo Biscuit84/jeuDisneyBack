@@ -404,15 +404,16 @@ public class MenuAdmin {
 		int choixPlateau = saisieInt("De quel plateau voulez-vous modifier des cases? (n°id)");
 		Plateau plateau = Context.getInstance().getDaoPlateau().findById(choixPlateau);
 		System.out.println("Il y a "+plateau.getNbCases()+" cases dans le plateau");
+		
+		String choix = saisieString("Ajout(+) ou suppression(-)");
+		
+		if(choix.equalsIgnoreCase("+")) {
 		int ordre = saisieInt("A quelle ordre voulez vous inserer la case ?");
 		EntityManager em = Context.getInstance().getEmf().createEntityManager();
 		em.getTransaction().begin();
 		Query q = em.createNativeQuery("UPDATE `casesplateau` SET `ordreCase` = ordreCase+'1' WHERE `casesplateau`.`ordreCase`>="+ordre+" AND plateau_id="+plateau.getId());
-
-		//System.out.println("UPDATE `casesplateau` SET `ordreCase` = ordreCase+'1' WHERE `casesplateau`.`ordreCase`>="+ordre+" AND plateau_id="+plateau.getId());
 		q.executeUpdate();
 		em.getTransaction().commit();
-		
 		plateau.setNbCases(plateau.getNbCases()+1);
 		plateau=Context.getInstance().getDaoPlateau().save(plateau);
 		System.out.println(Context.getInstance().getDaoCases().findAll());
@@ -420,11 +421,28 @@ public class MenuAdmin {
 		Cases c= Context.getInstance().getDaoCases().findById(modifCase);
 		CasesPlateau cp = new CasesPlateau(plateau, c, ordre);
 		Context.getInstance().getDaoCasesPlateau().save(cp);
-		
-		
-		
-		
-		
+		}
+		else if(choix.equalsIgnoreCase("-")) {
+		System.out.println("Voici la liste des cases du plateau");
+		EntityManager em1 = Context.getInstance().getEmf().createEntityManager();
+		Query q2 = em1.createQuery("SELECT cp from CasesPlateau cp where cp.plateau.id=:id",CasesPlateau.class);
+		q2.setParameter("id",plateau.getId());
+		List<CasesPlateau> casesPlateau = q2.getResultList();
+		System.out.println("Liste des cases du plateau: ");
+		for (CasesPlateau cp1:casesPlateau) {
+			System.out.println(cp1);
+		}
+		int ordre1 = saisieInt("quelle case voulez vous supprimer (id)?");
+		CasesPlateau o=Context.getInstance().getDaoCasesPlateau().findById(ordre1);
+		Context.getInstance().getDaoCasesPlateau().delete(o);
+		em1.getTransaction().begin();
+		Query q3 = em1.createNativeQuery("UPDATE `casesplateau` SET `ordreCase` = ordreCase-'1' WHERE `casesplateau`.`ordreCase`>="+ordre1+" AND plateau_id="+plateau.getId());
+		q3.executeUpdate();
+		em1.getTransaction().commit();
+		plateau.setNbCases(plateau.getNbCases()+1);
+		plateau=Context.getInstance().getDaoPlateau().save(plateau);
+		}
+		gestionPlateaux();
 	}
 
 	public static void modifCasesPlateau() {
