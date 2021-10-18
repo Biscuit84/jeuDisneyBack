@@ -14,6 +14,7 @@ public class Joueur extends Compte{
 
 	private int life=3;
 
+	private int nbEtoiles=100;
 
 
 	@OneToOne
@@ -37,23 +38,14 @@ public class Joueur extends Compte{
 	}
 
 
-
-
-
-	public List<PersoObtenu> getPersos() {
-		return persos;
+	public Joueur(String login, String password, String nom, String prenom, String mail, String pseudo) {
+		super(login, password, nom, prenom, mail);
+		this.pseudo = pseudo;
+		this.level="noob";
+		this.life=3;
+		this.nbEtoiles=100;
+		
 	}
-
-
-
-
-
-	public void setPersos(List<PersoObtenu> persos) {
-		this.persos = persos;
-	}
-
-
-
 
 
 	public Joueur(String pseudo) {
@@ -68,6 +60,24 @@ public class Joueur extends Compte{
 	public Joueur() {
 		super();
 
+	}
+	
+	public int getNbEtoiles() {
+		return nbEtoiles;
+	}
+
+	public void setNbEtoiles(int nbEtoiles) {
+		this.nbEtoiles = nbEtoiles;
+	}
+
+	public List<PersoObtenu> getPersos() {
+		return persos;
+	}
+
+
+
+	public void setPersos(List<PersoObtenu> persos) {
+		this.persos = persos;
 	}
 
 	public String getPseudo() {

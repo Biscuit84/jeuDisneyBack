@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,7 +28,8 @@ public class Personnage  {
 	private String pouvoir;
 	@ManyToOne
 	private CasesPlateau position;
-//	private int position;
+
+	private int prixAchatPerso;
 	
 	public Personnage(String nom, String prince, String mechant, String pouvoir) {
 		this.nom = nom;
@@ -35,12 +38,36 @@ public class Personnage  {
 		this.pouvoir = pouvoir;
 	}
 	
+	public Personnage(String nom, String prince, String mechant, String pouvoir, int prixAchatPerso) {
+		this.nom = nom;
+		this.prince = prince;
+		this.mechant = mechant;
+		this.pouvoir = pouvoir;
+		this.prixAchatPerso=prixAchatPerso;
+	}
 	
 	public Personnage() {
 		
 	}
 
+	
 
+
+	public CasesPlateau getPosition() {
+		return position;
+	}
+
+	public void setPosition(CasesPlateau position) {
+		this.position = position;
+	}
+
+	public int getPrixAchatPerso() {
+		return prixAchatPerso;
+	}
+
+	public void setPrixAchatPerso(int prixAchatPerso) {
+		this.prixAchatPerso = prixAchatPerso;
+	}
 
 	public int getId() {
 		return id;
@@ -100,7 +127,23 @@ public class Personnage  {
 	}
 
 	
-	
+	//pour remove un objet
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Personnage other = (Personnage) obj;
+		return id == other.id;
+	}
 
 
 
