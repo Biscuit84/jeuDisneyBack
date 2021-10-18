@@ -93,7 +93,7 @@ public class MyGame {
 			//liste de personnages dispo d'un joueur
 			List <Personnage> listePersonnagesJoueur= listePersonnagesJoueur(); // afficher liste perso par la fonction dans le DAO
 
-			//la liste des perso de chaque joueur après le choix
+			//la liste des perso de chaque joueur aprï¿½s le choix
 			List <Partie> listePersonnagesDeLaPartie= new ArrayList();
 
 			System.out.println("Voici la liste des personnages disponibles");
@@ -104,7 +104,7 @@ public class MyGame {
 			}
 
 
-			int positionCase = 0; //mettre case départ
+			int positionCase = 0; //mettre case dï¿½part
 
 
 
@@ -114,7 +114,7 @@ public class MyGame {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-			//Ajouter le perso et sa position à la liste des parties du joueur
+			//Ajouter le perso et sa position ï¿½ la liste des parties du joueur
 			Partie partieJoueur= new Partie(idPlateau,choixPerso,(Joueur)Test.connected,positionCase);
 			List<Partie> partie=new ArrayList();
 			partie.add(partieJoueur);
@@ -155,47 +155,47 @@ public class MyGame {
 			do {
 
 				for (int i=0; i<listePersonnagesDeLaPartie.size(); i++) {
-					System.out.println("\nJoueur "+listePersonnagesDeLaPartie.get(i).getPersonnage().getNom()+" à vous de jouer");
+					System.out.println("\nJoueur "+listePersonnagesDeLaPartie.get(i).getPersonnage().getNom()+" A vous de jouer");
 
-					// pour chaque joueur demander de faire le lancé de dés (plus tard on cliquera sur un bouton)
+					// pour chaque joueur demander de faire le lance de des (plus tard on cliquera sur un bouton)
 					do {
 						if (i==1 || i==2 || i==3) {
 							lanceDeDe="y";
-							System.out.println("Voulez vous lancer les dés? (y/n)");
+							System.out.println("Voulez vous lancer les des? (y/n)");
 							System.out.println("y");
 							break;
 						} else {
-							lanceDeDe= saisieString("Voulez vous lancer les dés? (y/n)");
+							lanceDeDe= saisieString("Voulez vous lancer les des? (y/n)");
 						}
 
 					} while (lanceDeDe.equalsIgnoreCase("n"));
 
-					//		// génère "..."
+					//		// gï¿½nï¿½re "..."
 					//		for(int j =0;j<3;j++) {
 					//			System.out.println(".");
 					//			Thread.sleep(1000);
 					//		}
 
 
-					//générer deux lancements de dés aléatoires
+					//gï¿½nï¿½rer deux lancements de dï¿½s alï¿½atoires
 					int de1 = r.nextInt(6)+1;
-					System.out.println("dé 1: "+de1);
+					System.out.println("de 1: "+de1);
 					int de2 = r.nextInt(6)+1;
-					System.out.println("dé 2: "+de2);
+					System.out.println("de 2: "+de2);
 
 
-					//récupérer la position actuelle du personnage
+					//rï¿½cupï¿½rer la position actuelle du personnage
 					positionCase=listePersonnagesDeLaPartie.get(i).getPosition();
 					positionCase+=calculSommeDe(de1, de2);
 					//actualiser la nouvelle position du joueur
 					listePersonnagesDeLaPartie.get(i).setPosition(positionCase);
-					System.out.println("le personnage "+listePersonnagesDeLaPartie.get(i).getPersonnage().getNom()+" du joueur " +listePersonnagesDeLaPartie.get(i).getJ().getPseudo()+" est à la case "+listePersonnagesDeLaPartie.get(i).getPosition());
+					System.out.println("le personnage "+listePersonnagesDeLaPartie.get(i).getPersonnage().getNom()+" du joueur " +listePersonnagesDeLaPartie.get(i).getJ().getPseudo()+" est ï¿½ la case "+listePersonnagesDeLaPartie.get(i).getPosition());
 
 
 
 
 					if (positionCase>=listeOrdreCases.size()) {
-						System.out.println("le joueur " +listePersonnagesDeLaPartie.get(i).getJ().getPseudo() +" gagné");
+						System.out.println("le joueur " +listePersonnagesDeLaPartie.get(i).getJ().getPseudo() +" gagne");
 						break;
 					}
 
@@ -242,10 +242,10 @@ public class MyGame {
 
 	//		menuJoueur();
 	//		
-	//		Case départ List<Plateau> id 0
+	//		Case dï¿½part List<Plateau> id 0
 	//		Pouvoir?
-	//		Lancer dé random()
-	//		déplacement de x sur la List<Plateau>
+	//		Lancer dï¿½ random()
+	//		dï¿½placement de x sur la List<Plateau>
 	//		effet en fonction de la Case
 	//		fin de tour
 	//		
@@ -254,7 +254,7 @@ public class MyGame {
 	//			
 	//			Case = id nom 
 	//			Plateau= id plateau 
-	//			Case_plateau id p id Case ordre nb déplacement
+	//			Case_plateau id p id Case ordre nb dï¿½placement
 	//			
 
 
