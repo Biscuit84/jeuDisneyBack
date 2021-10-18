@@ -141,7 +141,13 @@ public class PartieGame {
 		 System.out.println("Position des joueurs : ");
 		    for(int i=0; i<listeDesJoueurs.size(); i++)
 		    { 
-		    System.out.println(listeDesJoueurs.get(i).getPseudo() + " est sur la case " + positionCase[i] + ". C'est une case " + listeOrdreCases.get(positionCase[i]).getUneCase().getNom() +".");
+		    if (positionCase[i]>=listeOrdreCases.size()) {
+		    	System.out.println(listeDesJoueurs.get(i).getPseudo()+" est arrivé");
+		    }
+		    else {
+		    	System.out.println(listeDesJoueurs.get(i).getPseudo() + " est sur la case " + positionCase[i] + ". C'est une case " + listeOrdreCases.get(positionCase[i]).getUneCase().getNom() +".");
+		    }
+		    
 		    }
 		    
 	}
