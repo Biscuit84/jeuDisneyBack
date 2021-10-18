@@ -2,10 +2,12 @@ package app;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 import model.Compte;
 import model.Joueur;
+import model.Partie;
 import model.PersoObtenu;
 import model.Personnage;
 import plateau.Plateau;
@@ -13,12 +15,25 @@ import util.Context;
 
 public class PartieGame {
 
-
+	
+	static Personnage choixPerso;
+	static Random r = new Random();
+	static List <Joueur> listeDesJoueurs; 
+	static Compte connected;
+	
+	
 	public static int saisieInt(String msg) 
 	{
 		Scanner sc = new Scanner(System.in);
 		System.out.println(msg);
 		return sc.nextInt();
+	}
+
+	public static String saisieString(String msg) 
+	{
+		Scanner sc= new Scanner(System.in);		
+		System.out.println(msg);
+		return sc.nextLine();
 	}
 
 
@@ -27,9 +42,9 @@ public class PartieGame {
 
 		// deplacer la liste des IA sur context util
 		List <Joueur> listeDesJoueurs = new ArrayList <Joueur> ();
-		Joueur IA1 = new Joueur ("Piere");
-		Joueur IA2 = new Joueur ("Paul");
-		Joueur IA3 = new Joueur ("Jacques");
+		Joueur IA1 = new Joueur ("Mickey");
+		Joueur IA2 = new Joueur ("Donald");
+		Joueur IA3 = new Joueur ("Dingo");
 
 
 		Compte joueur=Context.getInstance().getConnected();
@@ -42,12 +57,14 @@ public class PartieGame {
 		System.out.println("Bienvenue! \nVoici la liste des Joueurs");
 		System.out.println(listeDesJoueurs);
 
+		
+		
 		return listeDesJoueurs;
 
 
 	}
 
-	public static void plateauPersoChoix ()
+	public static Plateau plateauChoix ()
 	{
 
 		//Choix du plateau
@@ -56,35 +73,82 @@ public class PartieGame {
 		int idPlateau = saisieInt("Choisissez un plateau:");
 		Plateau plateaudelaPartie =Context.getInstance().getDaoPlateau().findById(idPlateau);
 		System.out.println("Vous avez choisi le plateau " +plateaudelaPartie.getNom());
+		
+		
+		return plateaudelaPartie;
 
-		
+	}
+
+	public static Personnage persoChoix()
+	{
 		System.out.println("Voici la liste de vos personnages :");
-		
-		
+
+
 		List<PersoObtenu> listePersoJoueur=Context.getInstance().getDaoJoueur().listePersonnagesJoueur(Context.getInstance().getConnected().getId());
 
 		for(PersoObtenu p : listePersoJoueur) 
 		{
 			System.out.println(p.getPerso().getNom());
 		}
-		Context.getInstance().closeEmf();
 
 		int idPersonnage = saisieInt("Quel personnage voulez vous choisir?");
 		Personnage choixPerso=Context.getInstance().getDaoPersonnage().findById(idPersonnage);
 		System.out.println("Vous avez choisi: "+choixPerso);
-		
-		
 
+		return choixPerso;
 
 
 	}
+	
+	public static List<Personnage> persoIA()
+	{
+		//Affiche la liste de tous les perso dispo pour IA:
+		List <Personnage> listePersonnagesIA= Context.getInstance().getDaoPersonnage().findAll();
+		listePersonnagesIA.remove(choixPerso);
+		System.out.println(listePersonnagesIA);
 
+		//tirage aleatoire pour choix des perso IA
+		
+		List <Personnage> IAChoixPersonnage = new ArrayList ();
+		
+		for (int i=1;i<=4;i++) {
+			int nombreAleatoireIA = r.nextInt(listePersonnagesIA.size());
+			Personnage personnageIA= listePersonnagesIA.get(nombreAleatoireIA);
+			IAChoixPersonnage.add(personnageIA);
+			System.out.println(listeDesJoueurs.get(i).getPseudo()+" joue avec "+personnageIA);
+		}
+		
+		
+		
+		return IAChoixPersonnage;
+		
+	}
+	
 
+	public static void tourJeu ()
+	{
+		int positionCase = 0; //mettre case depart
+		
+		
+		
+	}
+	
 
 
 	public static void main(String[] args) {
 
-
+		String login = saisieString("Saisir votre login");
+		String password = saisieString("Saisir votre password");
+		connected=Context.getInstance().getDaoCompte().connect(login, password);
+		Context.getInstance().setConnected(connected);
+		
+		
+		listeDesJoueurs=joueurPartie();
+		plateauChoix();
+		persoChoix();
+		persoIA();
+		
+		Context.getInstance().closeEmf();
 	}
 
 }
