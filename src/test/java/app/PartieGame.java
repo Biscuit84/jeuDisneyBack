@@ -215,9 +215,10 @@ public class PartieGame {
 	    		// pour chaque joueur demander de faire le lance de des (plus tard on cliquera sur un bouton)
 	    		 do {
 						if (i==0 || i==1 || i==2) {
-							lanceDeDe="y";
-							System.out.println("Voulez vous lancer les des? (y/n)");
-							System.out.println("y");
+							//lanceDeDe="y";
+							//System.out.println("Voulez vous lancer les des? (y/n)");
+							//System.out.println("y");
+							System.out.println(listeDesJoueurs.get(i).getPseudo() +" lance les des.");
 							break;
 						} else {
 							lanceDeDe= saisieString("Voulez vous lancer les des? (y/n)");
@@ -231,22 +232,31 @@ public class PartieGame {
 					int de2 = r.nextInt(6)+1;
 					System.out.println("de 2: "+de2);
 					
-					int sommeDes = de1+de2;
+					//int sommeDes = de1+de2;
+					int sommeDes = de1;
+					System.out.println("Vous avancez de "+ sommeDes +" cases.");
 					
 					positionCase[i]=positionCase[i]+sommeDes;
 					
+
+					
 					// si tu as depasse la case arrivee
-					if (positionCase[i]>=listeOrdreCases.size()) {
+					if (positionCase[i]>=nb) {
 						System.out.println("le joueur " +listeDesJoueurs.get(i).getPseudo() +" gagne !");
 						break;
 					}
+					else {
+						System.out.println("Vous êtes sur la case "+ positionCase[i] + ". C'est une case " + listeOrdreCases.get(positionCase[i]).getUneCase().getNom() +".");
+					}
+					
 					
 					
 					do {
 						if (i==0 || i==1 || i==2) {
-							tourSuivant="y";
-							System.out.println("Fin de tour? (y/n) ");
-							System.out.println("y");
+							//tourSuivant="y";
+							//System.out.println("Fin de tour? (y/n) ");
+							//System.out.println("y");
+							System.out.println(listeDesJoueurs.get(i).getPseudo() +" a fini son tour.");
 							break;
 						} else {
 							tourSuivant = saisieString("Fin de tour? (y/n) ");
@@ -255,6 +265,7 @@ public class PartieGame {
 					
 						    	 
 	    	 } //fin du tour 
+	    	 System.out.println("-------------------------------------------------");
 	    	 positionJoueur(positionCase, listeOrdreCases);
 	    	
 
