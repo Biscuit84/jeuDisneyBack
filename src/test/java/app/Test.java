@@ -16,7 +16,7 @@ import util.Context;
 public class Test {
 
 
-	static Compte connected=null;
+	static Compte connected=Context.getInstance().getConnected();;
 	static Random r = new Random();
 
 	public static String saisieString(String msg) 
@@ -250,9 +250,7 @@ public class Test {
 
 
 	public static void main(String[] args) {
-		//		MyGame mg = new MyGame();
-		//		mg.jouer();
-
+		
 
 		menuConnexion();
 		Context.getInstance().closeEmf();
