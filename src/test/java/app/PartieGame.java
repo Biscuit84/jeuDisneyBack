@@ -12,6 +12,7 @@ import model.Joueur;
 import model.Partie;
 import model.PersoObtenu;
 import model.Personnage;
+import plateau.CasesPlateau;
 import plateau.Plateau;
 import util.Context;
 
@@ -132,7 +133,8 @@ public class PartieGame {
 	public static void tourJeu ()
 	{
 		int positionCase = 0; //mettre case depart
-		
+		String lanceDeDe;
+		String tourSuivant;
 		
 		
 	}
@@ -141,29 +143,43 @@ public class PartieGame {
 
 	public static void main(String[] args) {
 
+		
+		// a effacer
 		String login = saisieString("Saisir votre login");
 		String password = saisieString("Saisir votre password");
 		connected=Context.getInstance().getDaoCompte().connect(login, password);
 		Context.getInstance().setConnected(connected);
 		
 		
-		
+		// initialisation de la partie
 		listeDesJoueurs=joueurPartie();
 		plateaudelaPartie=plateauChoix();
 		choixPerso=persoChoix();
 		IAChoixPersonnages=persoIA();
+		
 		List <Personnage >listePersoPartie = new ArrayList();
 		listePersoPartie.add(choixPerso);
 		listePersoPartie.addAll(IAChoixPersonnages);
 		System.out.println(listePersoPartie);
 		
-		Partie partieEssai = new Partie (plateaudelaPartie);
+		Partie partieEssai = new Partie (plateaudelaPartie); //creation de la partie
 	
-	    partieEssai.setPersonnages(listePersoPartie); 
+	    partieEssai.setPersonnages(listePersoPartie); //on dit que ces persos sont dans cette partie
+	    //System.out.println(partieEssai.getPersonnages()); //verif
 	    
-	    //System.out.println(partieEssai.getPersonnages());
+	    
+		
+		List<CasesPlateau>listeOrdreCases=Context.getInstance().getDaoPlateau().listeCasesPlateau(plateaudelaPartie.getId());
+		//System.out.println("-------------------------------------------------------------------------------");
+		//System.out.println(listeOrdreCases);
+
+	    
+	    // lancement de la partie
 	    
 	    
+	   //tourJeu ();
+	    
+	    //Context.getInstance().getDaoPartie().save(partieEssai); // on save la création de la partie
 	 
 		
 		
